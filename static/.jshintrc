@@ -7,8 +7,8 @@
     "evil": false,
     "indent": 4,
     "lastsemic": true,
+    "loopfunc": true,
     "node": true,
-    "strict": true,
     "undef": true,
     "unused": true
 }

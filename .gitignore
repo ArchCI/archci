@@ -33,3 +33,7 @@ _testmain.go
 *.exe
 *.test
 *.prof
+
+# JavaScript
+node_modules
+bundle.js

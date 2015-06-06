@@ -2,10 +2,10 @@
   "name": "archci",
   "version": "0.0.1",
   "description": "",
-  "main": "views/index.html",
   "scripts": {
-    "build": "mkdir -p static/dist && gulp build",
-    "lint": "find static/js -regex \".*\\.jsx?\" | xargs jsxhint -c .jshintrc"
+    "watch": "./node_modules/.bin/gulp",
+    "build": "mkdir -p dist && ./node_modules/.bin/gulp build",
+    "lint": "find ./js -regex \".*\\.jsx?\" | xargs ./node_modules/.bin/jsxhint -c .jshintrc"
   },
   "author": "wizawu",
   "license": "MIT",
@@ -26,6 +26,7 @@
     "browserify": "^10.2.1",
     "gulp": "^3.8.11",
     "jquery-mockjax": "^1.6.2",
+    "jsxhint": "^0.12.0",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.2.1"
