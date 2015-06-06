@@ -1,7 +1,7 @@
 require("./actions/Mockjax.js");
 
 import React from "react";
-import {Layout} from "react-layout";
+import {Layout} from "react-polymer-layout";
 import Router from "react-router";
 import Builds from "./components/Builds.jsx";
 import Images from "./components/Images.jsx";
@@ -33,7 +33,7 @@ const App = React.createClass({
     ));
 
     return (
-      <Layout veritical style={{height: "100%"}}>
+      <Layout vertical style={{height: "100%"}}>
         <Layout horizontal style={{background: Colors.GREEN_700, height: 48, width: "100%"}}>
           {tabs}
         </Layout>
