@@ -20,7 +20,7 @@ const Workers = React.createClass({
   _labelStyle(color) {
     return {
       background: color,
-      width: 200,
+      width: 250,
       padding: 10,
       textAlign: "right",
       fontSize: "1em",

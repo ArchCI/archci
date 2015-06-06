@@ -2,6 +2,7 @@ const keyMirror = require("react/lib/keyMirror");
 
 export default {
   ActionTypes: keyMirror({
-    NULL: null
+    RECEIVE_PROJECTS: null,
+    CREATE_PROJECT: null
   })
 };

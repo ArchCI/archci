@@ -24,3 +24,36 @@ a:focus, a:hover {
 a.tab-link.active {
   background: #33691e;
 }
+
+.sidebar-input {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  border: 1px solid #ccc !important;
+  margin: 10px 0;
+}
+
+.sidebar-drop {
+  width: 100%;
+}
+
+.sidebar-drop button.dropdown-toggle {
+  width: 100%;
+  border-radius: 0;
+  text-align: left;
+}
+
+.sidebar-drop ul.dropdown-menu {
+  width: 100%;
+  border-radius: 0;
+}
+
+.sidebar-drop ul.dropdown-menu a {
+  height: 32px;
+  padding: 6px;
+}
+
+.sidebar-drop span.caret {
+  position: absolute;
+  right: 12px;
+  top: 14px;
+}

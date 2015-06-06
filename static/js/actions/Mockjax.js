@@ -46,50 +46,28 @@ export default (() => {
   });
 
   $.mockjax({
-    url: "/builds/active",
+    url: "/builds",
     type: "GET",
     response() {
       let result = [];
       let random = Math.random() * 10;
       for (let i = -1; i < random; i++) {
-        result.push({
-          id: Date.now() % 1000 + i + 1,
-          worker: "192.168.0." + (i + 1),
-          dispatched: new Date(Date.now() - Math.random() * 1000000).toJSON(),
-          finished: null,
-          status: null,
-          commit: "f04cdd02",
-          committer: "wizawu",
-          branch: "master",
-          type: "github",
-          owner: "wizawu",
-          repository: "archci" + (i + 1),
-          description: "Say hello"
-        });
-      }
-      this.responseText = result;
-    }
-  });
-
-  $.mockjax({
-    url: "/builds/search",
-    type: "GET",
-    response() {
-      let result = [];
-      let random = Math.random() * 10;
-      for (let i = -1; i < random; i++) {
-        let start = Date.now() - Math.random() * 1000000;
-        let end = null, status = null;
-        if (Math.random() > 0.5) {
-          end = start + Math.random() * 1000000;
-          status = Math.random() > 0.5 ? 0 : 1;
+        let start = null, status = null, end = null;
+        if (_data.search) {
+          start = Date.now() - Math.random() * 1000000;
+          if (Math.random() > 0.5) {
+            end = new Date(start + Math.random() * 1000000).toJSON();
+            status = Math.random() > 0.5 ? 0 : 1;
+          }
+        } else {
+          start = Date.now() - Math.random() * 1000000;
         }
         result.push({
           id: Date.now() % 1000 + i + 1,
           worker: "192.168.0." + (i + 1),
           dispatched: new Date(start).toJSON(),
-          finished: new Date(end).toJSON(),
-          status: status,
+          finished: end,
+          status: null,
           commit: "f04cdd02",
           committer: "wizawu",
           branch: "master",
@@ -127,7 +105,11 @@ export default (() => {
   $.mockjax({
     url: "/projects",
     type: "POST",
-    status: 201
+    response() {
+      this.responseText = {
+        id: Date.now() % 1000
+      };
+    }
   });
 
   $.mockjax({
@@ -148,7 +130,35 @@ export default (() => {
           owner: "wizawu",
           repository: "archci" + (i + 1),
           description: "Say hello",
-          domain: domain
+          public: Math.random() > 0.5,
+          domain: domain,
+          url: "https://github.com/ArchCI/archci"
+        });
+      }
+      this.responseText = result;
+    }
+  });
+
+  $.mockjax({
+    url: "/projects/*/builds",
+    type: "GET",
+    response() {
+      let result = [];
+      let random = Math.random() * 50;
+      for (let i = 0; i < random; i++) {
+        result.push({
+          id: Date.now() % 1000 + i + 1,
+          worker: "192.168.0." + (i + 1),
+          dispatched: new Date(Date.now() - Math.random() * 1000000).toJSON(),
+          finished: new Date(Date.now()).toJSON(),
+          status: Math.random() > 0.5 ? 1 : 0,
+          commit: "f04cdd02",
+          committer: "wizawu",
+          branch: "master",
+          type: "github",
+          owner: "wizawu",
+          repository: "archci" + (i + 1),
+          description: "Say hello"
         });
       }
       this.responseText = result;
