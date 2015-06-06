@@ -13,79 +13,104 @@ type ApiController struct {
 func (c *ApiController) CreateAccount() {
 	glog.Info("Creat accout")
 
-	c.Ctx.WriteString("")
+	result := "{data: 1}"
+	c.Ctx.WriteString(result)
 }
 
+/* Get active builds */
 func (c *ApiController) GetActiveBuilds() {
-	glog.Info("Creat accout")
+	glog.Info("Get active builds")
 
-	c.Ctx.WriteString("")
+	result := "{data: 1}"
+	c.Ctx.WriteString(result)
 }
 
+/* Get search builds */
 func (c *ApiController) GetSearchBuilds() {
-	glog.Info("Creat accout")
+	glog.Info("Get search builds")
 
-	c.Ctx.WriteString("")
+	result := "{data: 1}"
+	c.Ctx.WriteString(result)
 }
 
+/* Get build log by id */
 func (c *ApiController) GetBuildLog() {
-	glog.Info("Creat accout")
+	glog.Info("Get build log")
 
-	c.Ctx.WriteString("")
+	result := "{data: 1}"
+	c.Ctx.WriteString(result)
 }
 
+/* Get build log part by part id */
 func (c *ApiController) GetBuildLogPart() {
-	glog.Info("Creat accout")
+	glog.Info("Get build log part")
 
-	c.Ctx.WriteString("")
+	result := "{data: 1}"
+	c.Ctx.WriteString(result)
 }
 
+/* Create project */
 func (c *ApiController) CreateProject() {
-	glog.Info("Creat accout")
+	glog.Info("Creat project")
 
-	c.Ctx.WriteString("")
+	result := "{data: 1}"
+	c.Ctx.WriteString(result)
 }
 
+/* Get projects */
 func (c *ApiController) GetProjects() {
-	glog.Info("Creat accout")
+	glog.Info("Get projects")
 
-	c.Ctx.WriteString("")
+	result := "{data: 1}"
+	c.Ctx.WriteString(result)
 }
 
+/* Create image */
 func (c *ApiController) CreateImage() {
-	glog.Info("Creat accout")
+	glog.Info("Create image")
 
-	c.Ctx.WriteString("")
+	result := "{data: 1}"
+	c.Ctx.WriteString(result)
 }
 
+/* Get images */
 func (c *ApiController) GetImages() {
-	glog.Info("Creat accout")
+	glog.Info("Get images")
 
-	c.Ctx.WriteString("")
+	result := "{data: 1}"
+	c.Ctx.WriteString(result)
 }
 
+/* Get image by id */
 func (c *ApiController) GetImage() {
-	glog.Info("Creat accout")
+	glog.Info("Get image")
 
-	c.Ctx.WriteString("")
+	result := "{data: 1}"
+	c.Ctx.WriteString(result)
 }
 
+/* Get tasks */
 func (c *ApiController) GetTasks() {
-	glog.Info("Creat accout")
+	glog.Info("Get tasks")
 
-	c.Ctx.WriteString("")
+	result := "{data: 1}"
+	c.Ctx.WriteString(result)
 }
 
+/* Finish task */
 func (c *ApiController) FinishTask() {
-	glog.Info("Creat accout")
+	glog.Info("Finish task")
 
-	c.Ctx.WriteString("")
+	result := "{data: 1}"
+	c.Ctx.WriteString(result)
 }
 
+/* Get workers */
 func (c *ApiController) GetWorkers() {
-	glog.Info("Creat accout")
+	glog.Info("Get workers")
 
-	c.Ctx.WriteString("")
+	result := "{data: 1}"
+	c.Ctx.WriteString(result)
 }
 
 
