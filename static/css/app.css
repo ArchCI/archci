@@ -1,0 +1,26 @@
+html, body {
+  font-family: sans-serif;
+  height: 100%;
+  width: 100%;
+}
+
+button:focus {
+  outline: 0 !important;
+}
+
+button:hover{
+  cursor: pointer !important;
+}
+
+button {
+  border-radius: 0;
+}
+
+a:focus, a:hover {
+  text-decoration: none;
+  outline: 0 !important;
+}
+
+a.tab-link.active {
+  background: #33691e;
+}
