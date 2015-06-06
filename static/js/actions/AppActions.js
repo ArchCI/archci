@@ -31,14 +31,14 @@ export default {
     }, fail);
   },
 
-  receive_active_builds(params, done, fail) {
-    ActionUtils.get(API_PREFIX + "/builds", {}, data => {
+  receive_builds(params, done, fail) {
+    ActionUtils.get(API_PREFIX + "/builds", params, data => {
       if (done) done(data);
     }, fail);
   },
 
-  search_builds(params, done, fail) {
-    ActionUtils.get(API_PREFIX + "/builds", params, data => {
+  receive_log(params, done, fail) {
+    ActionUtils.get(API_PREFIX + `/builds/${params.id}/logs/${params.last}`, {}, data => {
       if (done) done(data);
     }, fail);
   }

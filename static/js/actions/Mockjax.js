@@ -63,7 +63,7 @@ export default (() => {
           start = Date.now() - Math.random() * 1000000;
         }
         result.push({
-          id: Date.now() % 1000 + i + 1,
+          id: i + 2,
           worker: "192.168.0." + (i + 1),
           dispatched: new Date(start).toJSON(),
           finished: end,
@@ -82,21 +82,11 @@ export default (() => {
   });
 
   $.mockjax({
-    url: "/builds/*/log",
+    url: "/builds/*/logs/*",
     type: "GET",
     response() {
       this.responseText = {
-        log: "apt-get install -y golang"
-      };
-    }
-  });
-
-  $.mockjax({
-    url: "/builds/*/log/*",
-    type: "GET",
-    response() {
-      this.responseText = {
-        log: "apt-get install -y golang " + Date.now(),
+        log: "apt-get install -y golang " + Date.now() + "\n",
         last: Date.now()
       };
     }

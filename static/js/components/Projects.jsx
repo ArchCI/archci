@@ -43,14 +43,13 @@ const Projects = React.createClass({
 
   _getBuildList(builds) {
     return builds.map(b => {
-      let start = moment(new Date(b.dispatched));
-      let end = moment(new Date(b.finished));
       return (
         <Layout style={{padding: "10px 0"}}>
           <Item flex="1" style={{marginLeft: 20}}>{b.id}</Item>
           <Item flex="3">{b.commit} ({b.branch})</Item>
           <Item flex="2">{b.committer}</Item>
-          <Item flex="2">{end.diff(start, "minutes")}</Item>
+          <Item flex="2">
+            {moment.duration(new Date(b.finished).getTime() - new Date(b.dispatched).getTime()).humanize()}</Item>
         </Layout>
       );
     });
