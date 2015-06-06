@@ -1,0 +1,14 @@
+{
+    "asi": false,
+    "boss": false,
+    "browser": true,
+    "eqeqeq": true,
+    "esnext": true,
+    "evil": false,
+    "indent": 4,
+    "lastsemic": true,
+    "node": true,
+    "strict": true,
+    "undef": true,
+    "unused": true
+}

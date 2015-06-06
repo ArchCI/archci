@@ -1,0 +1,33 @@
+{
+  "name": "archci",
+  "version": "0.0.1",
+  "description": "",
+  "main": "views/index.html",
+  "scripts": {
+    "build": "mkdir -p static/dist && gulp build",
+    "lint": "find static/js -regex \".*\\.jsx?\" | xargs jsxhint -c .jshintrc"
+  },
+  "author": "wizawu",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^3.3.4",
+    "events": "^1.0.2",
+    "express": "^4.12.4",
+    "flux": "^2.0.3",
+    "jquery": "^2.1.4",
+    "object-assign": "^2.0.0",
+    "qs": "^3.1.0",
+    "react": "^0.13.3",
+    "react-bootstrap": "^0.23.0",
+    "react-router": "^0.13.3"
+  },
+  "devDependencies": {
+    "babelify": "^6.1.2",
+    "browserify": "^10.2.1",
+    "gulp": "^3.8.11",
+    "jquery-mockjax": "^1.6.2",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.2.1"
+  }
+}
