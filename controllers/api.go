@@ -1,12 +1,36 @@
 package controllers
 
 import (
+	"database/sql"
+	"fmt"
+	_ "github.com/lib/pq"
+
 	"github.com/golang/glog"
 	"github.com/astaxie/beego"
 )
 
 type ApiController struct {
 	beego.Controller
+}
+
+func usedb() {
+	fmt.Println("Start to use postgrel")
+
+	//db, err := sql.Open("postgres", "user=archci dbname=pqgotest sslmode=verify-full")
+	db, err := sql.Open("postgres", "postgres://archci:archci@192.168.1.103/arch")
+	if err != nil {
+		glog.Fatal(err)
+	}
+
+	username := "tobe"
+	rows, err2 := db.Query("SELECT * FROM account WHERE username = $1", username)
+	if err2 != nil {
+		glog.Fatal(err2)
+	}
+
+	fmt.Println(rows)
+
+	fmt.Println("End of usedb")
 }
 
 /* Create acount */
