@@ -103,7 +103,7 @@ const Builds = React.createClass({
     let rightPanel = null;
     if (build) {
       rightPanel = (
-        <Layout vertical style={{width: "100%", paddingLeft: 20}}>
+        <Layout vertical flex style={{paddingLeft: 20}}>
           <div style={{fontSize: "1.6em"}}>{build && `${build.owner}/${build.repository}`}</div>
           <Layout horizontal style={{color: "#999", marginTop: 20}}>
             <Layout vertical flex="1">
