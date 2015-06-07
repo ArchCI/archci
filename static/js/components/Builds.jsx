@@ -105,13 +105,13 @@ const Builds = React.createClass({
       rightPanel = (
         <Layout vertical flex style={{paddingLeft: 20}}>
           <div style={{fontSize: "1.6em"}}>{build && `${build.owner}/${build.repository}`}</div>
-          <Layout horizontal style={{color: "#999", marginTop: 20}}>
-            <Layout vertical flex="1">
+          <Layout horizontal style={{color: "#999", marginTop: 20}} wrap>
+            <Layout vertical flex="1" style={{minWidth: 250}}>
               <Item>Branch: {build.branch}</Item>
               <Item>Commit: {build.commit}</Item>
               <Item>Committer: {build.committer}</Item>
             </Layout>
-            <Layout vertical flex="1">
+            <Layout vertical flex="1" style={{minWidth: 250}}>
               <Item>Build: {build.id}</Item>
               <Item>Worker: {build.worker}</Item>
               <Item>Elapsed: {moment.duration((build.finished && new Date(build.finished).getTime()) || Date.now() - new Date(build.dispatched).getTime()).humanize()}</Item>
