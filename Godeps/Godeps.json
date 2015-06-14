@@ -1,0 +1,19 @@
+{
+	"ImportPath": "github.com/ArchCI/archci",
+	"GoVersion": "go1.4",
+	"Deps": [
+		{
+			"ImportPath": "github.com/astaxie/beego",
+			"Comment": "v1.4.2",
+			"Rev": "07c628c7e9f813efc3f7e1785f667e08f2340d53"
+		},
+		{
+			"ImportPath": "github.com/golang/glog",
+			"Rev": "44145f04b68cf362d9c4df2182967c2275eaefed"
+		},
+		{
+			"ImportPath": "github.com/lib/pq",
+			"Rev": "7175accbed18058468c07811f76440d6e8d7cf19"
+		}
+	]
+}
