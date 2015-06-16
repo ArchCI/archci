@@ -65,6 +65,15 @@ func (c *ApiController) GetBuildLog() {
 	c.Ctx.WriteString(result)
 }
 
+/* Put build log part by part id */
+func (c *ApiController) PutBuildLogPart() {
+        glog.Info("Put build log part")
+
+        result := "{data: 1}"
+        c.Ctx.WriteString(result)
+}
+
+
 /* Get build log part by part id */
 func (c *ApiController) GetBuildLogPart() {
 	glog.Info("Get build log part")
