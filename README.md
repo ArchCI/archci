@@ -28,12 +28,18 @@ It's written in go so you can run it at most platforms. We're providing an all-i
 
 ## Development
 
-Front-end
-
 ```
 cd static
-npm run watch
-# Release
+npm install
+npm run build
+cd ..
+go build
+./archci
+```
+
+## Release
+
+```
 npm run lint
 npm run build
 ```

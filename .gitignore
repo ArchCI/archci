@@ -1,3 +1,7 @@
+# JavaScript
+node_modules
+bundle.js
+npm-debug.log
 
 # Temporary files
 ~
@@ -34,6 +38,3 @@ _testmain.go
 *.test
 *.prof
 
-# JavaScript
-node_modules
-bundle.js
