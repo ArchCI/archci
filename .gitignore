@@ -35,5 +35,5 @@ _testmain.go
 *.prof
 
 # JavaScript
-node_modules
-bundle.js
+#node_modules
+#bundle.js
