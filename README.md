@@ -16,25 +16,6 @@ Docker: [docker-distribution](https://github.com/ArchCI)
 
 ## Usage
 
-Currently you need to setup docker, postgresql and redis before running archci.
-
 ```
-cd ArchCI/archci
-go get
-go build
+docker run -d -p 80:80 archci/archci
 ```
-
-It's written in go so you can run it at most platforms. We're providing an all-in-one docker image, which might minimize the effot to setup the continues integration service.
-
-## Development
-
-Front-end
-
-```
-cd static
-npm run watch
-# Release
-npm run lint
-npm run build
-```
-

@@ -1,6 +1,10 @@
+# JavaScript
+# node_modules
+# bundle.js
+# npm-debug.log
 
 # Temporary files
-~
+*~
 
 # Platform-sensitive executable file
 archci
@@ -34,6 +38,3 @@ _testmain.go
 *.test
 *.prof
 
-# JavaScript
-#node_modules
-#bundle.js
