@@ -1,10 +1,10 @@
 # JavaScript
-node_modules
-bundle.js
-npm-debug.log
+# node_modules
+# bundle.js
+# npm-debug.log
 
 # Temporary files
-~
+*~
 
 # Platform-sensitive executable file
 archci
