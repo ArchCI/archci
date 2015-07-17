@@ -7,6 +7,9 @@ import (
 
 	"github.com/golang/glog"
 	"github.com/astaxie/beego"
+
+	//"encoding/json"
+	//"github.com/ArchCI/archci/redisutil"
 )
 
 type ApiController struct {
@@ -72,6 +75,22 @@ func (c *ApiController) PutBuildLogPart() {
         result := "{data: 1}"
         c.Ctx.WriteString(result)
 }
+
+// Get all logs of the build
+func (c *ApiController) GetBuildLogsAll() {
+	glog.Info("Get all build logs")
+
+	//buildId := c.GetString(":buildId")
+	//field := 0
+	//result := redisutil.HgetString(buildId, field)
+	//c.Ctx.WriteString(result)
+
+	// TODO(tobe): change to get data from redis
+	mystruct := `{0: "apt-get install", 1: "go test"}`
+	c.Data["json"] = &mystruct
+	c.ServeJson()
+}
+
 
 
 /* Get build log part by part id */
