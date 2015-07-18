@@ -1,13 +1,13 @@
-/* The seagull angular application */
-var seagull = angular.module('seagull', [
+/* The archci angular application */
+var archci = angular.module('archci', [
   'ngRoute',
-  'seagullControllers',
+  'archciControllers',
   'ngCookies', // To save perference of i18n language
   'pascalprecht.translate'
 ]);
 
 /* Configurate application like router and others*/
-seagull.config(['$locationProvider', '$routeProvider',
+archci.config(['$locationProvider', '$routeProvider',
   function($locationProvider, $routeProvider) {
     /* Remove the # in url from Angular */
     $locationProvider.html5Mode(true);
@@ -15,36 +15,20 @@ seagull.config(['$locationProvider', '$routeProvider',
     /* Set router, all in /js/controllers.js */
     $routeProvider.
       when('/', {
-        templateUrl: '/static/html/home.html',
-        controller: 'HomeController'
+        templateUrl: '/static/html/builds.html',
+        controller: 'BuildsController'
       }).
-      when('/containers', {
-        templateUrl: '/static/html/containers.html',
-        controller: 'ContainersController'
+      when('/builds', {
+        templateUrl: '/static/html/builds.html',
+        controller: 'BuildsController'
       }).
-      when('/containers/:id', {
-        templateUrl: '/static/html/container.html',
-        controller: 'ContainerController'
+      when('/projects', {
+        templateUrl: '/static/html/projects.html',
+        controller: 'ProjectsController'
       }).
-      when('/images', {
-        templateUrl: '/static/html/images.html',
-        controller: 'ImagesController'
-      }).
-      when('/images/:id', {
-        templateUrl: '/static/html/image.html',
-        controller: 'ImageController'
-      }).
-      when('/images/:user/:repo', {
-        templateUrl: '/static/html/image.html',
-        controller: 'ImageController'
-      }).
-      when('/configuration', {
-        templateUrl: '/static/html/configuration.html',
-        controller: 'ConfigurationController'
-      }).
-      when('/dockerhub', {
-        templateUrl: '/static/html/dockerhub.html',
-        controller: 'DockerhubController'
+      when('/workers', {
+        templateUrl: '/static/html/workers.html',
+        controller: 'WorkersController'
       });
       /* No default page for angular so that beego can process API request
       otherwise({
@@ -54,7 +38,7 @@ seagull.config(['$locationProvider', '$routeProvider',
 );
 
 /* Refer to http://www.ng-newsletter.com/posts/angular-translate.html for i18n */
-seagull.controller('IndexController', function ($scope, $rootScope, $translate, $route, $http) {
+archci.controller('IndexController', function ($scope, $rootScope, $translate, $route, $http) {
 
   /* Change languages with the language string */
   $scope.changeLanguage = function (key) {
@@ -90,7 +74,7 @@ seagull.controller('IndexController', function ($scope, $rootScope, $translate, 
 
 
  /* Use angular-translate for i18n and all text should be translated here */
- seagull.config(function ($translateProvider) {
+ archci.config(function ($translateProvider) {
    /* Use cookie to store the perference of i18n language */
    $translateProvider.useCookieStorage();
 
@@ -100,11 +84,15 @@ seagull.controller('IndexController', function ($scope, $rootScope, $translate, 
    /* Translate into English */
    $translateProvider.translations('en-us', {
      // Index html
-     seagull: 'Seagull',
-     containers: 'Containers',
-     images: 'Images',
-     configuration: 'Configuration',
-     dockerhub: 'DockerHub'
+     archci: 'ArchCI',
+     builds: 'Builds',
+     projects: 'Projects',
+     workers: 'Workers',
+     more: 'More',
+     en_us: 'English',
+     zh_cn: '简体中文',
+     zh_hant: '繁體中文',
+
   });
 
 });

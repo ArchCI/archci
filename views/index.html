@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<!-- Use angular and named it seagull application -->
-<html ng-app="seagull">
+<!-- Use angular and named it archci application -->
+<html ng-app="archci">
 <head>
     <title>ArchCI</title>
     <meta charset="UTF-8">
@@ -40,16 +40,15 @@
     <div class="container">
         <!-- Home page button -->
         <div class="navbar-header">
-            <a class="navbar-brand animate-nav" href="/">{{'seagull'|translate}}</a>
+            <a class="navbar-brand animate-nav" href="/">{{'archci'|translate}}</a>
         </div>
 
         <!-- Containers page, images page and configuration page buttons -->
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="animate-nav"><a href="/containers">{{'containers'|translate}}</a></li>
-                <li class="animate-nav"><a href="/images">{{'images'|translate}}</a></li>
-                <li class="animate-nav"><a href="/configuration">{{'configuration'|translate}}</a></li>
-                <li class="animate-nav"><a href="/dockerhub">{{'dockerhub'|translate}}</a></li>
+                <li class="animate-nav"><a href="/builds">{{'builds'|translate}}</a></li>
+                <li class="animate-nav"><a href="/projects">{{'projects'|translate}}</a></li>
+                <li class="animate-nav"><a href="/workers">{{'workers'|translate}}</a></li>
             </ul>
 
             <!-- A more button to change i18n languages and email me -->
@@ -60,9 +59,6 @@
                         <li class="animate-nav" ng-hide="isEnUs()"><a href="" ng-click="changeLanguage('en-us')">{{'en_us'|translate}}</a></li>
                         <li class="animate-nav" ng-hide="isZhCn()"><a href="" ng-click="changeLanguage('zh-cn')">{{'zh_cn'|translate}}</a></li>
                         <li class="animate-nav" ng-hide="isZhHant()"><a href="" ng-click="changeLanguage('zh-hant')">{{'zh_hant'|translate}}</a></li>
-                        <li class="animate-nav" ng-hide="isDeDe()"><a href="" ng-click="changeLanguage('de-de')">{{'de_de'|translate}}</a></li>
-                        <li class="animate-nav" ng-hide="isFrFr()"><a href="" ng-click="changeLanguage('fr-fr')">{{'fr_fr'|translate}}</a></li>
-                        <li class="animate-nav"><a href="https://github.com/tobegit3hub/seagull/issues/new" target="_top">{{'need_help'|translate}}</a></li>
                     </ul>
                 </li>
             </ul>
