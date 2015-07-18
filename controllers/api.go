@@ -9,11 +9,16 @@ import (
 	"github.com/astaxie/beego"
 
 	//"encoding/json"
-	//"github.com/ArchCI/archci/redisutil"
+	"github.com/ArchCI/archci/redisutil"
 )
 
 type ApiController struct {
 	beego.Controller
+}
+
+type GetBuildLogsIndexResponse struct {
+	Log string `json:"log"`
+	Next bool `json:"next`
 }
 
 func usedb() {
@@ -68,12 +73,48 @@ func (c *ApiController) GetBuildLog() {
 	c.Ctx.WriteString(result)
 }
 
-/* Put build log part by part id */
-func (c *ApiController) PutBuildLogPart() {
+/* Put build log with index */
+func (c *ApiController) PutBuildLogsIndex() {
         glog.Info("Put build log part")
 
         result := "{data: 1}"
         c.Ctx.WriteString(result)
+}
+
+/* Get build log with index */
+func (c *ApiController) GetBuildLogsIndex() {
+	glog.Info("Get build log with index")
+
+	buildId := c.GetString(":buildId")
+	index, _ := c.GetInt(":index")
+
+	log := redisutil.HgetString(buildId, index)
+
+	next := false
+
+	finish := redisutil.HgetBool(buildId, "finish")
+	if finish == false {
+		next = true
+		fmt.Println("finish == false")
+	}
+
+	current := redisutil.HgetInt(buildId, "current")
+	if index < current {
+		next = true
+		fmt.Println("index != current")
+	}
+
+	// Throw error if index is larger than current
+
+	// Handle when get the index is more than current but it's not total
+
+	response := &GetBuildLogsIndexResponse{
+		Log:   log,
+		Next: next}
+
+	c.Data["json"] = response
+	c.ServeJson()
+
 }
 
 // Get all logs of the build
@@ -85,20 +126,11 @@ func (c *ApiController) GetBuildLogsAll() {
 	//result := redisutil.HgetString(buildId, field)
 	//c.Ctx.WriteString(result)
 
-	// TODO(tobe): change to get data from redis
+	// TODO(tobe): change to hgetall  from redis
 	mystruct := `{0: "apt-get install", 1: "go test"}`
+
 	c.Data["json"] = &mystruct
 	c.ServeJson()
-}
-
-
-
-/* Get build log part by part id */
-func (c *ApiController) GetBuildLogPart() {
-	glog.Info("Get build log part")
-
-	result := "{data: 1}"
-	c.Ctx.WriteString(result)
 }
 
 /* Create project */

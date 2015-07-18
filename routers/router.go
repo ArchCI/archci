@@ -14,8 +14,8 @@ func init() {
 	beego.Router("/v1/builds/active", &controllers.ApiController{}, "get:GetActiveBuilds")
 	beego.Router("/v1/builds/search", &controllers.ApiController{}, "get:GetSearchBuilds")
 	beego.Router("/v1/builds/:buildId/logs", &controllers.ApiController{}, "get:GetBuildLog")
-	beego.Router("/v1/builds/:buildId/logs/:part", &controllers.ApiController{}, "post:PutBuildLogPart")
-	beego.Router("/v1/builds/:buildId/logs/:part", &controllers.ApiController{}, "get:GetBuildLogPart")
+	beego.Router("/v1/builds/:buildId/logs/:index", &controllers.ApiController{}, "post:PutBuildLogsIndex")
+	beego.Router("/v1/builds/:buildId/logs/:index", &controllers.ApiController{}, "get:GetBuildLogsIndex")
 	beego.Router("/v1/builds/:buildId/logs/all", &controllers.ApiController{}, "get:GetBuildLogsAll")
 
 	beego.Router("/v1/projects", &controllers.ApiController{}, "post:CreateProject")
