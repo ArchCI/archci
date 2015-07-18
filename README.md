@@ -17,5 +17,5 @@ Docker: [docker-distribution](https://github.com/ArchCI)
 ## Usage
 
 ```
-docker run -d -p 80:80 archci/archci
+docker run -d -p 10010:10010 archci/archci
 ```
