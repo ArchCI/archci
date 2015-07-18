@@ -1,8 +1,0 @@
-*.DS_Store
-*.esproj
-*.swp
-.idea/
-*.iml
-
-node_modules/
-npm-debug.log
