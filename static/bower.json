@@ -23,6 +23,7 @@
     "angular-translate": "~2.7.2",
     "angular-cookies": "~1.4.3",
     "angular-translate-storage-local": "~2.7.2",
-    "animate.css": "~3.3.0"
+    "animate.css": "~3.3.0",
+    "Hover": "~2.0.2"
   }
 }
