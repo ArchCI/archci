@@ -5,8 +5,8 @@ import (
 	"fmt"
 	_ "github.com/lib/pq"
 
-	"github.com/golang/glog"
 	"github.com/astaxie/beego"
+	"github.com/golang/glog"
 
 	//"encoding/json"
 	"github.com/ArchCI/archci/redisutil"
@@ -17,8 +17,8 @@ type ApiController struct {
 }
 
 type GetBuildLogsIndexResponse struct {
-	Log string `json:"log"`
-	Next bool `json:"next`
+	Log  string `json:"log"`
+	Next bool   `json:"next`
 }
 
 func usedb() {
@@ -75,10 +75,10 @@ func (c *ApiController) GetBuildLog() {
 
 /* Put build log with index */
 func (c *ApiController) PutBuildLogsIndex() {
-        glog.Info("Put build log part")
+	glog.Info("Put build log part")
 
-        result := "{data: 1}"
-        c.Ctx.WriteString(result)
+	result := "{data: 1}"
+	c.Ctx.WriteString(result)
 }
 
 /* Get build log with index */
@@ -109,7 +109,7 @@ func (c *ApiController) GetBuildLogsIndex() {
 	// Handle when get the index is more than current but it's not total
 
 	response := &GetBuildLogsIndexResponse{
-		Log:   log,
+		Log:  log,
 		Next: next}
 
 	c.Data["json"] = response
@@ -196,8 +196,3 @@ func (c *ApiController) GetWorkers() {
 	result := "{data: 1}"
 	c.Ctx.WriteString(result)
 }
-
-
-
-
-

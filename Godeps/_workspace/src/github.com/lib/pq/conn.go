@@ -854,9 +854,9 @@ func (cn *conn) verifyCA(client *tls.Conn, tlsConf *tls.Config) {
 	}
 	certs := client.ConnectionState().PeerCertificates
 	opts := x509.VerifyOptions{
-		DNSName: client.ConnectionState().ServerName,
+		DNSName:       client.ConnectionState().ServerName,
 		Intermediates: x509.NewCertPool(),
-		Roots: tlsConf.RootCAs,
+		Roots:         tlsConf.RootCAs,
 	}
 	for i, cert := range certs {
 		if i == 0 {
@@ -869,7 +869,6 @@ func (cn *conn) verifyCA(client *tls.Conn, tlsConf *tls.Config) {
 		panic(err)
 	}
 }
-
 
 // This function sets up SSL client certificates based on either the "sslkey"
 // and "sslcert" settings (possibly set via the environment variables PGSSLKEY

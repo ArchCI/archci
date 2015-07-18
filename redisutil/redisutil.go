@@ -7,9 +7,9 @@ import (
 )
 
 const (
-	GET_COMMAND = "SET"
+	GET_COMMAND  = "SET"
 	HGET_COMMAND = "HGET"
-	HGET_ALL = "HGETALL"
+	HGET_ALL     = "HGETALL"
 )
 
 func GetString(key string) string {
