@@ -1,27 +1,45 @@
 /* All angular application controllers */
-var archciControllers = angular.module('archciControllers', []);
+var archciControllers = angular.module("archciControllers", []);
 
-archciControllers.controller('BuildsController', ['$scope', '$routeParams', '$http',
+archciControllers.controller("BuildsController", ["$scope", "$routeParams", "$http",
   function($scope, $routeParams, $http) {
 
-    /* Get the version object
-    $http.get('/dockerapi/version').success(function(data) {
-      $scope.version = data;
-      $scope.Os = $scope.version.Os;
-      $scope.KernelVersion = $scope.version.KernelVersion;
-      $scope.GoVersion = $scope.version.GoVersion;
-      $scope.Version = $scope.version.Version;
-    });
-
-    /* Get the info object
-    $http.get('/dockerapi/info').success(function(data) {
-      $scope.info = data;
-      $scope.Containers = $scope.info.Containers;
-      $scope.Images = $scope.info.Images;
-    });
+    /*
+    {"log":"Unable to find image 'golang:1.4' locally","Next":true}
     */
+    $http.get("/v1/builds/123/logs/0").success(function(data) {
+      $scope.data = data;
 
-  $scope.Name = "ArchCI"
+      $scope.fullLog = data.log;
+
+      // TODO(tobe): we use "next" but not "Next" in beego api
+      next = data.Next;
+
+
+      // TODO(tobe): how to iterate all the logs, it calls twice
+      if(next){
+
+        index = 0;
+
+        $http.get("/v1/builds/123/logs/" + index).success(function(data) {
+          $scope.fullLog += "\n";
+          $scope.fullLog += data.log;
+
+          console.log(index)
+          console.log(data.Next)
+
+          next = data.Next;
+
+          index++;
+
+        });
+
+      }
+
+
+
+    });
+
 }]);
 
 archciControllers.controller('ProjectsController', ['$scope', '$routeParams', '$http',

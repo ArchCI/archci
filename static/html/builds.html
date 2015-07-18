@@ -4,14 +4,49 @@
     <!-- Alert if we get nothing from server -->
     <div ng-show="!version || !info" class="alert alert-danger" role="alert">{{'error_to_load_data_from_docker_daemon_please_check_and_configuration'|translate}}</div>
 
-    <!-- Display a bootstrap-style jumbotron to display the basic info of docker -->
-    <div class="jumbotron">
 
-        <h1>Builds page</h1>
+    <div class="row">
 
-        <h3>
-            {{Name}}
-        </h3>
+        <div class="col-md-3">
+
+            <input type="text" class="form-control search" placeholder="{{'search'|translate}}" ng-model="search" autofocus>
+
+            <ul>
+                <li>tobegit3hub/seagull</li>
+
+                <li>ArchCI/archci</li>
+
+                <li>ArchCI/simple-worker</li>
+            </ul>
+
+        </div>
+
+
+        <div class="col-md-9">
+
+            <h3>tobegit3hub/seagull</h3>
+
+            <p><span>Branch: master</span> &nbsp;&nbsp; <span>Commit: 123455</span></p>
+
+            <p><span>Worker: 127.0.0.1</span> &nbsp;&nbsp; <span>Commiter: tobegit3hub</span></p>
+
+            <p><span>Finish: true</span></p>
+
+            <div>
+
+
+                {{fullLog}}
+
+
+
+            </div>
+
+        </div>
+
+
     </div>
+
+
+
 
 </div> <!-- End of this angular page -->
