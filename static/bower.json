@@ -1,0 +1,28 @@
+{
+  "name": "archci",
+  "version": "1.0.0",
+  "homepage": "http://archci.com",
+  "authors": [
+    "ArchCI <http://archci.com>"
+  ],
+  "description": "Distributed scalable continuous integration service with docker",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "bootstrap": "~3.3.5",
+    "jquery.gritter": "~1.7.4",
+    "angular": "~1.4.3",
+    "angular-route": "~1.4.3",
+    "angular-translate": "~2.7.2",
+    "angular-cookies": "~1.4.3",
+    "angular-translate-storage-local": "~2.7.2",
+    "animate.css": "~3.3.0"
+  }
+}
