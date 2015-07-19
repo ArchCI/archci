@@ -16,9 +16,13 @@
             <ul class="list-unstyled" ng-repeat="build in builds | filter: search">
                 <tr>
                     <p><a href="" ng-click="changeBuild(build)">{{build.ProjectName}}</a></p>
-
                 </tr>
             </ul>
+
+            <!-- When search result is null, display the message -->
+            <div ng-show="(builds | filter: search).length == 0">
+                <p>{{'no_search_result_for'|translate}} <b style="color:blue">{{search}}</b></p>
+            </div>
 
         </div>
 
@@ -34,9 +38,7 @@
             <p><span>Finish: true</span></p>
 
             <div>
-                <pre><code>
-{{fullLog}}
-                </code></pre>
+                <pre><code>{{fullLog}}</code></pre>
             </div>
 
         </div>

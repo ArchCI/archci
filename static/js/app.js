@@ -83,7 +83,7 @@ archci.controller('IndexController', function ($scope, $rootScope, $translate, $
 
    /* Translate into English */
    $translateProvider.translations('en-us', {
-     // Index html
+     // Index page
      archci: 'ArchCI',
      builds: 'Builds',
      projects: 'Projects',
@@ -93,6 +93,8 @@ archci.controller('IndexController', function ($scope, $rootScope, $translate, $
      zh_cn: '简体中文',
      zh_hant: '繁體中文',
 
+     // Build page
+     no_search_result_for: 'No search result for',
   });
 
 });
