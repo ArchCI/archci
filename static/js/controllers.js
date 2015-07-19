@@ -44,26 +44,49 @@ archciControllers.controller("BuildsController", ["$scope", "$routeParams", "$ht
 
   });
 
-  /*
-  {"log":"Unable to find image 'golang:1.4' locally","Next":true}
-  */
-  $http.get("/v1/builds/123/logs/0").success(function(data) {
-    $scope.data = data;
 
-    $scope.fullLog = data.log;
+  // TODO(tobe): we use "next" but not "Next" in beego api
+  next = true;
+  index = 0;
+  $scope.fullLog = ""
 
-    // TODO(tobe): we use "next" but not "Next" in beego api
-    next = data.Next;
+  // More usage in https://docs.angularjs.org/api/ng/service/$interval
+  get_log_loop = $interval(function() {
 
-    index = 1;
+    if(next){
+      /*
+      {"log":"Unable to find image 'golang:1.4' locally","Next":true}
+      */
+      $http.get("/v1/builds/" + $scope.build.Id + "/logs/" + index).success(function(data) {
 
-    // Refer to https://docs.angularjs.org/api/ng/service/$interval
+        $scope.fullLog = $scope.fullLog + data.log + "\n";
+
+        next = data.Next;
+        index++;
+      });
+    } else {
+      $interval.cancel(get_log_loop);
+    }
+
+  }, 500);
+
+
+  // Change the current build
+  $scope.changeBuild = function(build) {
+    $scope.build = build;
+
+    // TODO(tobe): duplicated with above, should make it in a function
+    next = true;
+    index = 0;
+    $scope.fullLog = ""
+
+    // More usage in https://docs.angularjs.org/api/ng/service/$interval
     get_log_loop = $interval(function() {
 
       if(next){
-        $http.get("/v1/builds/123/logs/" + index).success(function(data) {
+        $http.get("/v1/builds/" + $scope.build.Id + "/logs/" + index).success(function(data) {
 
-          $scope.fullLog = $scope.fullLog + "\n" + data.log;
+          $scope.fullLog = $scope.fullLog + data.log + "\n";
 
           next = data.Next;
           index++;
@@ -72,15 +95,8 @@ archciControllers.controller("BuildsController", ["$scope", "$routeParams", "$ht
         $interval.cancel(get_log_loop);
       }
 
-      console.log("continue to interval")
-
     }, 500);
 
-  });
-
-  // Change the current build
-  $scope.changeBuild = function(build) {
-    $scope.build = build;
   };
 
 
