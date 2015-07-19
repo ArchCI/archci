@@ -17,15 +17,13 @@ archciControllers.controller("BuildsController", ["$scope", "$routeParams", "$ht
 
       index = 1;
 
+      // Refer to https://docs.angularjs.org/api/ng/service/$interval
       get_log_loop = $interval(function() {
-
-        //alert("hi baby");
 
         if(next){
           $http.get("/v1/builds/123/logs/" + index).success(function(data) {
 
-            $scope.fullLog += "\n";
-            $scope.fullLog += data.log;
+            $scope.fullLog = $scope.fullLog + "\n" + data.log;
 
             next = data.Next;
             index++;
