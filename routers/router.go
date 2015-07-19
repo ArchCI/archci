@@ -14,6 +14,7 @@ func init() {
 	beego.Router("/v1/account", &controllers.ApiController{}, "post:CreateAccount")
 	// login
 
+	beego.Router("/v1/builds/all", &controllers.ApiController{}, "get:GetBuildsAll")
 	beego.Router("/v1/builds/active", &controllers.ApiController{}, "get:GetActiveBuilds")
 	beego.Router("/v1/builds/search", &controllers.ApiController{}, "get:GetSearchBuilds")
 	beego.Router("/v1/builds/:buildId/logs", &controllers.ApiController{}, "get:GetBuildLog")
@@ -22,7 +23,7 @@ func init() {
 	beego.Router("/v1/builds/:buildId/logs/all", &controllers.ApiController{}, "get:GetBuildLogsAll")
 
 	beego.Router("/v1/projects", &controllers.ApiController{}, "post:CreateProject")
-	beego.Router("/v1/projects", &controllers.ApiController{}, "get:GetProjects")
+	beego.Router("/v1/projects/all", &controllers.ApiController{}, "get:GetProjectsAll")
 
 	beego.Router("/v1/images", &controllers.ApiController{}, "post:CreateImage")
 	beego.Router("/v1/images", &controllers.ApiController{}, "get:GetImages")

@@ -37,6 +37,21 @@ func RegisterModels() {
 	orm.RegisterModel(new(Project), new(Build))
 }
 
+// For advanced usage in http://beego.me/docs/mvc/model/query.md#all
+func GetAllProjects() {
+
+}
+
+func GetAllBuilds() []*Build {
+	o := orm.NewOrm()
+
+	var builds []*Build
+	// o.QueryTable("build").Filter("name", "slene").All(&builds) to filter with build status
+	num, err := o.QueryTable("build").All(&builds)
+	fmt.Printf("Returned Rows Num: %s, %s", num, err)
+	return builds
+}
+
 // For more usage in http://beego.me/docs/mvc/model/overview.md
 func AddProject(projectName string, repoUrl string) error {
 	o := orm.NewOrm()

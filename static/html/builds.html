@@ -11,13 +11,17 @@
 
             <input type="text" class="form-control search" placeholder="{{'search'|translate}}" ng-model="search" autofocus>
 
-            <ul class="list-unstyled">
-                <li>tobegit3hub/seagull</li>
 
-                <li>ArchCI/archci</li>
+            <ul class="list-unstyled" ng-repeat="build in builds | filter: search">
+            <tr>
+                <p>{{build.ProjectName}}</p>
 
-                <li>ArchCI/simple-worker</li>
+            </tr>
+
+
             </ul>
+
+
 
         </div>
 

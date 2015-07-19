@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"database/sql"
+	//"database/sql"
 	"fmt"
 	_ "github.com/lib/pq"
 
@@ -9,6 +9,7 @@ import (
 	"github.com/golang/glog"
 
 	//"encoding/json"
+	"github.com/ArchCI/archci/models"
 	"github.com/ArchCI/archci/redisutil"
 )
 
@@ -21,32 +22,22 @@ type GetBuildLogsIndexResponse struct {
 	Next bool   `json:"next`
 }
 
-func usedb() {
-	fmt.Println("Start to use postgrel")
-
-	//db, err := sql.Open("postgres", "user=archci dbname=pqgotest sslmode=verify-full")
-	db, err := sql.Open("postgres", "postgres://archci:archci@192.168.1.103/arch")
-	if err != nil {
-		glog.Fatal(err)
-	}
-
-	username := "tobe"
-	rows, err2 := db.Query("SELECT * FROM account WHERE username = $1", username)
-	if err2 != nil {
-		glog.Fatal(err2)
-	}
-
-	fmt.Println(rows)
-
-	fmt.Println("End of usedb")
-}
-
 /* Create acount */
 func (c *ApiController) CreateAccount() {
 	glog.Info("Creat accout")
 
 	result := "{data: 1}"
 	c.Ctx.WriteString(result)
+}
+
+// Get all builds from database
+func (c *ApiController) GetBuildsAll() {
+	glog.Info("Get all builds")
+
+	builds := models.GetAllBuilds()
+
+	c.Data["json"] = builds
+	c.ServeJson()
 }
 
 /* Get active builds */
@@ -141,9 +132,9 @@ func (c *ApiController) CreateProject() {
 	c.Ctx.WriteString(result)
 }
 
-/* Get projects */
-func (c *ApiController) GetProjects() {
-	glog.Info("Get projects")
+// Get all projects from database
+func (c *ApiController) GetProjectsAll() {
+	glog.Info("Get all projects")
 
 	result := "{data: 1}"
 	c.Ctx.WriteString(result)
