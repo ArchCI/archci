@@ -1,8 +1,8 @@
 /* All angular application controllers */
 var archciControllers = angular.module("archciControllers", []);
 
-archciControllers.controller("BuildsController", ["$scope", "$routeParams", "$http",
-  function($scope, $routeParams, $http) {
+archciControllers.controller("BuildsController", ["$scope", "$routeParams", "$http", "$interval",
+  function($scope, $routeParams, $http, $interval) {
 
     /*
     {"log":"Unable to find image 'golang:1.4' locally","Next":true}
@@ -15,32 +15,33 @@ archciControllers.controller("BuildsController", ["$scope", "$routeParams", "$ht
       // TODO(tobe): we use "next" but not "Next" in beego api
       next = data.Next;
 
+      index = 1;
 
-      // TODO(tobe): how to iterate all the logs, it calls twice
-      if(next){
+      get_log_loop = $interval(function() {
 
-        index = 0;
+        //alert("hi baby");
 
-        $http.get("/v1/builds/123/logs/" + index).success(function(data) {
-          $scope.fullLog += "\n";
-          $scope.fullLog += data.log;
+        if(next){
+          $http.get("/v1/builds/123/logs/" + index).success(function(data) {
 
-          console.log(index)
-          console.log(data.Next)
+            $scope.fullLog += "\n";
+            $scope.fullLog += data.log;
 
-          next = data.Next;
+            next = data.Next;
+            index++;
+          });
+        } else {
+          $interval.cancel(get_log_loop);
+        }
 
-          index++;
+        console.log("continue to interval")
 
-        });
-
-      }
-
-
+      }, 500);
 
     });
 
 }]);
+
 
 archciControllers.controller('ProjectsController', ['$scope', '$routeParams', '$http',
   function($scope, $routeParams, $http) {

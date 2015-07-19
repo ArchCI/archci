@@ -16,19 +16,19 @@ archci.config(['$locationProvider', '$routeProvider',
     $routeProvider.
       when('/', {
         templateUrl: '/static/html/builds.html',
-        controller: 'BuildsController'
+        //controller: 'BuildsController'
       }).
       when('/builds', {
         templateUrl: '/static/html/builds.html',
-        controller: 'BuildsController'
+        //controller: 'BuildsController'
       }).
       when('/projects', {
         templateUrl: '/static/html/projects.html',
-        controller: 'ProjectsController'
+        //controller: 'ProjectsController'
       }).
       when('/workers', {
         templateUrl: '/static/html/workers.html',
-        controller: 'WorkersController'
+        //controller: 'WorkersController'
       });
       /* No default page for angular so that beego can process API request
       otherwise({
