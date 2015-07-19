@@ -39,9 +39,10 @@ archciControllers.controller("BuildsController", ["$scope", "$routeParams", "$ht
 
     $scope.builds = data
 
+    // TODO(tobe): check if the length is equal to 0
+    $scope.build = data[0]
+
   });
-
-
 
   /*
   {"log":"Unable to find image 'golang:1.4' locally","Next":true}
@@ -76,6 +77,12 @@ archciControllers.controller("BuildsController", ["$scope", "$routeParams", "$ht
     }, 500);
 
   });
+
+  // Change the current build
+  $scope.changeBuild = function(build) {
+    $scope.build = build;
+  };
+
 
 }]);
 

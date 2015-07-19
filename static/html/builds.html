@@ -9,30 +9,27 @@
 
         <div class="col-md-3">
 
+            <!-- Search input -->
             <input type="text" class="form-control search" placeholder="{{'search'|translate}}" ng-model="search" autofocus>
 
-
+            <!-- List all the builds -->
             <ul class="list-unstyled" ng-repeat="build in builds | filter: search">
-            <tr>
-                <p>{{build.ProjectName}}</p>
+                <tr>
+                    <p><a href="" ng-click="changeBuild(build)">{{build.ProjectName}}</a></p>
 
-            </tr>
-
-
+                </tr>
             </ul>
-
-
 
         </div>
 
 
         <div class="col-md-9">
 
-            <h3>tobegit3hub/seagull</h3>
+            <h3>{{build.ProjectName}}</h3>
 
-            <p><span>Branch: master</span> &nbsp;&nbsp; <span>Commit: 123455</span></p>
+            <p><span>Branch: {{build.Branch}}</span> &nbsp;&nbsp; <span>Commit: {{build.Commit}}</span></p>
 
-            <p><span>Worker: 127.0.0.1</span> &nbsp;&nbsp; <span>Commiter: tobegit3hub</span></p>
+            <p><span>Worker: 127.0.0.1</span> &nbsp;&nbsp; <span>Commiter: {{build.Committer}}</span></p>
 
             <p><span>Finish: true</span></p>
 
