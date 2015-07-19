@@ -38,8 +38,13 @@ func RegisterModels() {
 }
 
 // For advanced usage in http://beego.me/docs/mvc/model/query.md#all
-func GetAllProjects() {
+func GetAllProjects() []*Project {
+	o := orm.NewOrm()
 
+	var projects []*Project
+	num, err := o.QueryTable("project").All(&projects)
+	fmt.Printf("Returned Rows Num: %s, %s", num, err)
+	return projects
 }
 
 func GetAllBuilds() []*Build {

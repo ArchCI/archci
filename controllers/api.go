@@ -136,8 +136,10 @@ func (c *ApiController) CreateProject() {
 func (c *ApiController) GetProjectsAll() {
 	glog.Info("Get all projects")
 
-	result := "{data: 1}"
-	c.Ctx.WriteString(result)
+	projects := models.GetAllProjects()
+
+	c.Data["json"] = projects
+	c.ServeJson()
 }
 
 /* Create image */

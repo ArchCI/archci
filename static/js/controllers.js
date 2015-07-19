@@ -106,7 +106,43 @@ archciControllers.controller("BuildsController", ["$scope", "$routeParams", "$ht
 archciControllers.controller('ProjectsController', ['$scope', '$routeParams', '$http',
   function($scope, $routeParams, $http) {
 
-  $scope.Name = "ArchCI"
+  /*
+  [
+    {
+      "Id": 1,
+      "ProjectName": "tobegit3hub/seagull",
+      "RepoUrl": "https://github.com/tobegit3hub/seagull",
+      "Status": 0
+    },
+    {
+      "Id": 2,
+      "ProjectName": "tobegit3hub/note",
+      "RepoUrl": "https://github.com/tobegit3hub/note",
+      "Status": 0
+    },
+    {
+      "Id": 3,
+      "ProjectName": "ArchCI/archci",
+      "RepoUrl": "https://github.com/ArchCI/archci",
+      "Status": 0
+    }
+  ]
+  */
+  $http.get("/v1/projects/all").success(function(data) {
+
+    $scope.projects = data;
+
+    $scope.project = data[0];
+
+  });
+
+  // Change the current build
+  $scope.changeProject = function(project) {
+    $scope.project = project;
+  }
+
+
+
 }]);
 
 archciControllers.controller('WorkersController', ['$scope', '$routeParams', '$http',
