@@ -8,13 +8,16 @@ import (
 func init() {
 	beego.Router("/", &controllers.MainController{})
 	beego.Router("/builds", &controllers.MainController{})
+	beego.Router("/builds/:buildId", &controllers.MainController{})
 	beego.Router("/projects", &controllers.MainController{})
+	beego.Router("/projects/:projectId", &controllers.MainController{})
 	beego.Router("/workers", &controllers.MainController{})
 
 	beego.Router("/v1/account", &controllers.ApiController{}, "post:CreateAccount")
 	// login
 
 	beego.Router("/v1/builds/all", &controllers.ApiController{}, "get:GetBuildsAll")
+	beego.Router("/v1/builds/:buildId", &controllers.ApiController{}, "get:GetBuild")
 	beego.Router("/v1/builds/active", &controllers.ApiController{}, "get:GetActiveBuilds")
 	beego.Router("/v1/builds/search", &controllers.ApiController{}, "get:GetSearchBuilds")
 	beego.Router("/v1/builds/:buildId/logs", &controllers.ApiController{}, "get:GetBuildLog")
@@ -24,6 +27,7 @@ func init() {
 
 	beego.Router("/v1/projects", &controllers.ApiController{}, "post:CreateProject")
 	beego.Router("/v1/projects/all", &controllers.ApiController{}, "get:GetProjectsAll")
+	beego.Router("/v1/projects/:projectId", &controllers.ApiController{}, "get:GetProject")
 
 	beego.Router("/v1/images", &controllers.ApiController{}, "post:CreateImage")
 	beego.Router("/v1/images", &controllers.ApiController{}, "get:GetImages")

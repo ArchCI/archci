@@ -22,7 +22,15 @@ archci.config(['$locationProvider', '$routeProvider',
         templateUrl: '/static/html/builds.html',
         //controller: 'BuildsController'
       }).
+      when('/builds/:buildId', {
+        templateUrl: '/static/html/builds.html',
+        //controller: 'BuildsController'
+      }).
       when('/projects', {
+        templateUrl: '/static/html/projects.html',
+        //controller: 'ProjectsController'
+      }).
+      when('/projects/:projectId', {
         templateUrl: '/static/html/projects.html',
         //controller: 'ProjectsController'
       }).

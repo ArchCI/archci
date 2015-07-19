@@ -17,7 +17,7 @@ const (
 
 // More setting in http://beego.me/docs/mvc/model/models.md
 type Project struct {
-	Id          int64  `orm:"auto"`
+	Id          int64  `orm:"pk;auto"`
 	ProjectName string `orm:"unique"` // TODO(tobe): add size(1024)
 	RepoUrl     string `orm:"size(1024)"`
 	Status      int
@@ -37,6 +37,25 @@ func RegisterModels() {
 	orm.RegisterModel(new(Project), new(Build))
 }
 
+func GetAllBuilds() []*Build {
+	o := orm.NewOrm()
+
+	var builds []*Build
+	// o.QueryTable("build").Filter("name", "slene").All(&builds) to filter with build status
+	num, err := o.QueryTable("build").All(&builds)
+	fmt.Printf("Returned Rows Num: %s, %s", num, err)
+	return builds
+}
+
+func GetBuildWithId(buildId int64) Build {
+	o := orm.NewOrm()
+
+	build := Build{Id: buildId}
+	err := o.Read(&build)
+	fmt.Printf("ERR: %v\n", err)
+	return build
+}
+
 // For advanced usage in http://beego.me/docs/mvc/model/query.md#all
 func GetAllProjects() []*Project {
 	o := orm.NewOrm()
@@ -47,14 +66,13 @@ func GetAllProjects() []*Project {
 	return projects
 }
 
-func GetAllBuilds() []*Build {
+func GetProjectWithId(projectId int64) Project {
 	o := orm.NewOrm()
 
-	var builds []*Build
-	// o.QueryTable("build").Filter("name", "slene").All(&builds) to filter with build status
-	num, err := o.QueryTable("build").All(&builds)
-	fmt.Printf("Returned Rows Num: %s, %s", num, err)
-	return builds
+	project := Project{Id: projectId}
+	err := o.Read(&project)
+	fmt.Printf("ERR: %v\n", err)
+	return project
 }
 
 // For more usage in http://beego.me/docs/mvc/model/overview.md

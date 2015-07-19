@@ -40,6 +40,18 @@ func (c *ApiController) GetBuildsAll() {
 	c.ServeJson()
 }
 
+// Get one build with build id
+func (c *ApiController) GetBuild() {
+	glog.Info("Get build")
+
+	buildId, _ := c.GetInt64(":buildId")
+
+	build := models.GetBuildWithId(buildId)
+
+	c.Data["json"] = build
+	c.ServeJson()
+}
+
 /* Get active builds */
 func (c *ApiController) GetActiveBuilds() {
 	glog.Info("Get active builds")
@@ -139,6 +151,18 @@ func (c *ApiController) GetProjectsAll() {
 	projects := models.GetAllProjects()
 
 	c.Data["json"] = projects
+	c.ServeJson()
+}
+
+// Get one project with project id
+func (c *ApiController) GetProject() {
+	glog.Info("Get project")
+
+	projectId, _ := c.GetInt64(":projectId")
+
+	project := models.GetProjectWithId(projectId)
+
+	c.Data["json"] = project
 	c.ServeJson()
 }
 

@@ -35,15 +35,30 @@ archciControllers.controller("BuildsController", ["$scope", "$routeParams", "$ht
     }
   ]
   */
-  $http.get("/v1/builds/all").success(function(data) {
 
-    $scope.builds = data
+
+  // If access /builds
+  if(typeof $routeParams.buildId === 'undefined' || $routeParams.buildId == null){
 
     // TODO(tobe): check if the length is equal to 0
-    $scope.build = data[0]
+      $http.get("/v1/builds/all").success(function(data) {
+        $scope.builds = data
+        $scope.build = data[0]
+      });
 
-  });
+  }else{
+  // If access /builds/:buildId
 
+    $http.get("/v1/builds/all").success(function(data) {
+      $scope.builds = data
+    });
+
+    // TODO(tobe): check if the id exists or not
+    $http.get("/v1/builds/" + $routeParams.buildId).success(function(data) {
+      $scope.build = data
+    });
+
+  };
 
   // TODO(tobe): we use "next" but not "Next" in beego api
   next = true;
@@ -128,20 +143,36 @@ archciControllers.controller('ProjectsController', ['$scope', '$routeParams', '$
     }
   ]
   */
-  $http.get("/v1/projects/all").success(function(data) {
 
-    $scope.projects = data;
 
-    $scope.project = data[0];
+  // If access /projects
+  if(typeof $routeParams.projectId === 'undefined' || $routeParams.projectId == null){
 
-  });
+    // TODO(tobe): check if the length is equal to 0
+    $http.get("/v1/projects/all").success(function(data) {
+      $scope.projects = data;
+      $scope.project = data[0];
+    });
+
+  }else{
+  // If access /projects/:projectId
+
+    $http.get("/v1/projects/all").success(function(data) {
+      $scope.projects = data;
+
+    });
+
+    // TODO(tobe): check if the id exists or not
+    $http.get("/v1/projects/" + $routeParams.projectId).success(function(data) {
+      $scope.project = data
+    });
+
+  };
 
   // Change the current build
   $scope.changeProject = function(project) {
     $scope.project = project;
   }
-
-
 
 }]);
 
