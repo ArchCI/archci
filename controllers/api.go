@@ -8,7 +8,7 @@ import (
 	"github.com/astaxie/beego"
 	"github.com/golang/glog"
 
-	//"encoding/json"
+	"encoding/json"
 	"github.com/ArchCI/archci/models"
 	"github.com/ArchCI/archci/redisutil"
 )
@@ -28,6 +28,42 @@ func (c *ApiController) CreateAccount() {
 
 	result := "{data: 1}"
 	c.Ctx.WriteString(result)
+}
+
+// New build record in database
+func (c *ApiController) NewBuild() {
+	glog.Info("New build record")
+
+	fmt.Println("Get post request")
+
+	//var ob models.Project
+	//json.Unmarshal(c.Ctx.Input.RequestBody, &ob)
+
+	//fmt.Println(ob.ProjectName)
+
+
+
+	req := struct{ ProjectName string }{}
+	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &req); err != nil {
+		c.Ctx.Output.SetStatus(400)
+		c.Ctx.Output.Body([]byte("empty title"))
+
+		fmt.Println(err)
+
+		return
+	}
+
+	fmt.Println(req.ProjectName)
+	//t, err := models.NewTask(req.Title)
+	//if err != nil {
+	//	this.Ctx.Output.SetStatus(400)
+	//	this.Ctx.Output.Body([]byte(err.Error()))
+	//	return
+	//}
+	//models.DefaultTaskList.Save(t)
+
+
+
 }
 
 // Get all builds from database
