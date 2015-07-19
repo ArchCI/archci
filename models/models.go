@@ -30,11 +30,19 @@ type Build struct {
 	Commit      string `orm:"size(1024"`
 	CommitTime  time.Time
 	Committer   string `orm:"size(1024)"`
+	BuildTime   time.Time
 	Status      int
 }
 
+type Worker struct {
+	Id         int64  `orm:"pk;auto"`
+	Ip         string `orm:"size(1024)"`
+	LastUpdate time.Time
+	Status     int
+}
+
 func RegisterModels() {
-	orm.RegisterModel(new(Project), new(Build))
+	orm.RegisterModel(new(Project), new(Build), new(Worker))
 }
 
 func GetAllBuilds() []*Build {
@@ -73,6 +81,24 @@ func GetProjectWithId(projectId int64) Project {
 	err := o.Read(&project)
 	fmt.Printf("ERR: %v\n", err)
 	return project
+}
+
+func GetAllWorkers() []*Worker {
+	o := orm.NewOrm()
+
+	var workers []*Worker
+	num, err := o.QueryTable("worker").All(&workers)
+	fmt.Printf("Returned Rows Num: %s, %s", num, err)
+	return workers
+}
+
+func GetAllWorkersWithStatus(status int) []*Worker {
+	o := orm.NewOrm()
+
+	var workers []*Worker
+	num, err := o.QueryTable("worker").Filter("status", status).All(&workers)
+	fmt.Printf("Returned Rows Num: %s, %s", num, err)
+	return workers
 }
 
 // For more usage in http://beego.me/docs/mvc/model/overview.md

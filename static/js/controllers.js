@@ -179,5 +179,30 @@ archciControllers.controller('ProjectsController', ['$scope', '$routeParams', '$
 archciControllers.controller('WorkersController', ['$scope', '$routeParams', '$http',
   function($scope, $routeParams, $http) {
 
-  $scope.Name = "ArchCI"
+  /*
+  [
+    {
+      "Id": 1,
+      "Ip": "127.0.0.1",
+      "LastUpdate": "0001-01-01T08:00:00+08:00",
+      "Status": 0
+    },
+    {
+      "Id": 2,
+      "Ip": "192.168.0.255",
+      "LastUpdate": "0001-01-01T08:00:00+08:00",
+      "Status": 0
+    }
+  ]
+  */
+  $http.get("/v1/workers/all/status/0").success(function(data) {
+    $scope.busyWorkers = data;
+  });
+
+  $http.get("/v1/workers/all/status/1").success(function(data) {
+    $scope.idleWorkers = data;
+  });
+
+
+
 }]);

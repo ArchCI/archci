@@ -29,6 +29,10 @@ func init() {
 	beego.Router("/v1/projects/all", &controllers.ApiController{}, "get:GetProjectsAll")
 	beego.Router("/v1/projects/:projectId", &controllers.ApiController{}, "get:GetProject")
 
+	beego.Router("/v1/workers/all", &controllers.ApiController{}, "get:GetWorkersAll")
+	// TODO(tobe): this is not really RESTful
+	beego.Router("/v1/workers/all/status/:status", &controllers.ApiController{}, "get:GetWorkersAllStatus")
+
 	beego.Router("/v1/images", &controllers.ApiController{}, "post:CreateImage")
 	beego.Router("/v1/images", &controllers.ApiController{}, "get:GetImages")
 	beego.Router("/v1/images/:id", &controllers.ApiController{}, "get:GetImage")
