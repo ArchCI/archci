@@ -90,6 +90,8 @@ archci.config(function ($translateProvider) {
     en_us: 'English',
     zh_cn: '简体中文',
     zh_hant: '繁體中文',
+    documents: 'Documents',
+    ask_question: 'Ask Question',
 
     // Build page
     no_search_result_for: 'No search result for',
@@ -107,6 +109,8 @@ archci.config(function ($translateProvider) {
     en_us: 'English',
     zh_cn: '简体中文',
     zh_hant: '繁體中文',
+    documents: '文档中心',
+    ask_question: '提交问题',
 
     // Build page
     no_search_result_for: '找不到相关搜索结果',
@@ -124,6 +128,8 @@ archci.config(function ($translateProvider) {
     en_us: 'English',
     zh_cn: '简体中文',
     zh_hant: '繁體中文',
+    documents: '文檔中心',
+    ask_question: '提交問題',
 
     // Build page
     no_search_result_for: '找不到相關搜索結果',

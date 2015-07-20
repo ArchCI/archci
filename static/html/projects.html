@@ -4,9 +4,46 @@
 
     <br/><br/><br/>
 
+    <!-- Modal to add server -->
+    <div class="modal fade" id="addProject" tabindex="-1" role="dialog" aria-labelledby="addServerModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="addServerModalLabel">Add Remote Server</h4>
+                </div>
+
+                <div class="modal-body">
+                    <form role="form" >
+                        <div class="form-group">
+                            Project name: <input class="form-control" placeholder="test-project" ng-model="projectName">
+                        </div>
+
+                        <div class="form-group">
+                            Repo url: <input class="form-control" placeholder="https://github.com/tobegit3hub/test-project.git" ng-model="repoUrl">
+                        </div>
+
+                        <div class="form-group">
+                            Committer: <input class="form-control" placeholder="tobe" ng-model="committer">
+                        </div>
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" aria-hidden="true" ng-click="addProject(projectName, repoUrl, committer)">Save changes</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     <div class="row">
 
         <div class="col-md-3">
+
+            <button ng-click="triggerCI(project)" class="btn btn-info hvr-shadow" type="submit" data-toggle="modal" data-target="#addProject">Add Project</button>
 
             <!-- Search input -->
             <input type="text" class="form-control search" placeholder="{{'search'|translate}}" ng-model="search" autofocus>

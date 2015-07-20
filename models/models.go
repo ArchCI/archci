@@ -24,8 +24,8 @@ type Project struct {
 }
 
 type Build struct {
-	Id          int64  `orm:"pk;auto"`
-	ProjectId	int64
+	Id          int64 `orm:"pk;auto"`
+	ProjectId   int64
 	ProjectName string `orm:"size(1024)"`
 	RepoUrl     string `orm:"size(1024)"`
 	Branch      string `orm:"size(1024)"`
@@ -123,6 +123,7 @@ func GetAllWorkersWithStatus(status int) []*Worker {
 // For more usage in http://beego.me/docs/mvc/model/overview.md
 func AddProjectWithNameUrl(projectName string, repoUrl string) error {
 	o := orm.NewOrm()
+
 	project := Project{ProjectName: projectName, RepoUrl: repoUrl}
 	_, err := o.Insert(&project)
 	return err

@@ -36,7 +36,6 @@ archciControllers.controller("BuildsController", ["$scope", "$routeParams", "$ht
   ]
   */
 
-
   // If access /builds
   if(typeof $routeParams.buildId === 'undefined' || $routeParams.buildId == null){
 
@@ -114,7 +113,6 @@ archciControllers.controller("BuildsController", ["$scope", "$routeParams", "$ht
 
   };
 
-
 }]);
 
 
@@ -143,7 +141,6 @@ archciControllers.controller('ProjectsController', ['$scope', '$routeParams', '$
     }
   ]
   */
-
 
   // If access /projects
   if(typeof $routeParams.projectId === 'undefined' || $routeParams.projectId == null){
@@ -192,7 +189,6 @@ archciControllers.controller('ProjectsController', ['$scope', '$routeParams', '$
 
   }, 1000);
 
-
   // Change the current build
   $scope.changeProject = function(project) {
     $scope.project = project;
@@ -203,6 +199,27 @@ archciControllers.controller('ProjectsController', ['$scope', '$routeParams', '$
       $scope.builds = data
       console.log(data)
     });
+
+  }
+
+  $scope.addProject = function(projectName, repoUrl, committer) {
+
+    var data = {"ProjectName": projectName,
+                "RepoUrl": repoUrl,
+                "Committer": committer
+    }
+
+    $http.post("/v1/projects/new", data).success(function(data, status) {
+        // TODO(tobe): add notification if success or fail
+        $scope.add_status = "success";
+        //alert("success");
+    })
+
+    $http.post("/v1/builds/new", data).success(function(data, status) {
+        // TODO(tobe): add notification if success or fail
+        $scope.add_status = "success";
+        alert("success to add build")
+    })
 
   }
 
