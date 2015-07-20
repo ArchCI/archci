@@ -49,11 +49,11 @@
 
                 <tbody>
                     <tr ng-repeat="build in builds">
-                        <td>build.Id</td>
-                        <td>build.Commit</td>
-                        <td>build.Committer</td>
-                        <td>build.BuildTime</td>
-                        <td>build.Status</td>
+                        <td><a ng-href="/builds/{{build.Id}}">{{build.Id}}</a></td>
+                        <td>{{build.Commit}}</td>
+                        <td>{{build.Committer}}</td>
+                        <td>{{build.BuildTime}}</td>
+                        <td>{{build.Status}}</td>
                     </tr>
                 </tbody>
             </table>

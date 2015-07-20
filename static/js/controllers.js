@@ -186,7 +186,7 @@ archciControllers.controller('ProjectsController', ['$scope', '$routeParams', '$
       ]
       */
 
-      $http.get("/v1/builds/all/project/" + scope.project.ProjectName).success(function(data) {
+      $http.get("/v1/builds/all/project/" + $scope.project.ProjectName).success(function(data) {
         $scope.builds = data
       });
 
@@ -196,10 +196,14 @@ archciControllers.controller('ProjectsController', ['$scope', '$routeParams', '$
   // Change the current build
   $scope.changeProject = function(project) {
     $scope.project = project;
+
     console.log("/v1/builds/all/project/" + $scope.project.ProjectName)
+
     $http.get("/v1/builds/all/project/" + $scope.project.ProjectName).success(function(data) {
       $scope.builds = data
+      console.log(data)
     });
+
   }
 
   // Post the data to record new build in database

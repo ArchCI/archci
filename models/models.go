@@ -25,6 +25,7 @@ type Project struct {
 
 type Build struct {
 	Id          int64  `orm:"pk;auto"`
+	ProjectId	int64
 	ProjectName string `orm:"size(1024)"`
 	RepoUrl     string `orm:"size(1024)"`
 	Branch      string `orm:"size(1024)"`
