@@ -177,16 +177,23 @@ archciControllers.controller('ProjectsController', ['$scope', '$routeParams', '$
   // Post the data to record new build in database
   $scope.triggerCI = function(project) {
 
+        /*
         var data = $.param({
             json: JSON.stringify({
                 ProjectId: project.Id,
                 ProjectName: project.ProjectName
-
             })
         });
-        $http.post("/v1/builds/new", {"ProjectName": "Buy bread"}).success(function(data, status) {
-            $scope.hello = data;
-            alert("Success to post")
+        */
+
+        var data = {"Id": project.Id,
+                    "ProjectName": "tobe/testporject",
+                    "RepoUrl": project.RepoUrl
+        }
+
+        $http.post("/v1/builds/new", data).success(function(data, status) {
+            // TODO(tobe): add notification if success or fail
+            $scope.add_status = "success";
         })
 
   }

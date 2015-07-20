@@ -34,36 +34,16 @@ func (c *ApiController) CreateAccount() {
 func (c *ApiController) NewBuild() {
 	glog.Info("New build record")
 
-	fmt.Println("Get post request")
+	project := models.Project{}
 
-	//var ob models.Project
-	//json.Unmarshal(c.Ctx.Input.RequestBody, &ob)
-
-	//fmt.Println(ob.ProjectName)
-
-
-
-	req := struct{ ProjectName string }{}
-	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &req); err != nil {
+	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &project); err != nil {
 		c.Ctx.Output.SetStatus(400)
 		c.Ctx.Output.Body([]byte("empty title"))
-
 		fmt.Println(err)
-
 		return
 	}
 
-	fmt.Println(req.ProjectName)
-	//t, err := models.NewTask(req.Title)
-	//if err != nil {
-	//	this.Ctx.Output.SetStatus(400)
-	//	this.Ctx.Output.Body([]byte(err.Error()))
-	//	return
-	//}
-	//models.DefaultTaskList.Save(t)
-
-
-
+	models.AddBuildWithProject(project)
 }
 
 // Get all builds from database

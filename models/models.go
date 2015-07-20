@@ -26,6 +26,7 @@ type Project struct {
 type Build struct {
 	Id          int64  `orm:"pk;auto"`
 	ProjectName string `orm:"size(1024)"`
+	RepoUrl     string `orm:"size(1024)"`
 	Branch      string `orm:"size(1024)"`
 	Commit      string `orm:"size(1024"`
 	CommitTime  time.Time
@@ -62,6 +63,14 @@ func GetBuildWithId(buildId int64) Build {
 	err := o.Read(&build)
 	fmt.Printf("ERR: %v\n", err)
 	return build
+}
+
+func AddBuildWithProject(project Project) error {
+	o := orm.NewOrm()
+	build := Build{ProjectName: project.ProjectName, RepoUrl: project.RepoUrl, Branch: "master", BuildTime: time.Now(), CommitTime: time.Now()}
+	_, err := o.Insert(&build)
+	fmt.Printf("ERR: %v\n", err)
+	return err
 }
 
 // For advanced usage in http://beego.me/docs/mvc/model/query.md#all
@@ -102,10 +111,18 @@ func GetAllWorkersWithStatus(status int) []*Worker {
 }
 
 // For more usage in http://beego.me/docs/mvc/model/overview.md
-func AddProject(projectName string, repoUrl string) error {
+func AddProjectWithNameUrl(projectName string, repoUrl string) error {
 	o := orm.NewOrm()
 	project := Project{ProjectName: projectName, RepoUrl: repoUrl}
 	_, err := o.Insert(&project)
+	return err
+}
+
+func AddProject(project Project) error {
+	o := orm.NewOrm()
+
+	_, err := o.Insert(&project)
+	fmt.Println(err)
 	return err
 }
 
