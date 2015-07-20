@@ -18,6 +18,7 @@ func init() {
 
 	beego.Router("/v1/builds/new", &controllers.ApiController{}, "post:NewBuild")
 	beego.Router("/v1/builds/all", &controllers.ApiController{}, "get:GetBuildsAll")
+	beego.Router("/v1/builds/all/project/:projectName", &controllers.ApiController{}, "get:GetBuildsWithProjectName")
 	beego.Router("/v1/builds/:buildId", &controllers.ApiController{}, "get:GetBuild")
 	beego.Router("/v1/builds/active", &controllers.ApiController{}, "get:GetActiveBuilds")
 	beego.Router("/v1/builds/search", &controllers.ApiController{}, "get:GetSearchBuilds")

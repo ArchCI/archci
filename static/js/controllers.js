@@ -159,19 +159,47 @@ archciControllers.controller('ProjectsController', ['$scope', '$routeParams', '$
 
     $http.get("/v1/projects/all").success(function(data) {
       $scope.projects = data;
-
     });
 
     // TODO(tobe): check if the id exists or not
     $http.get("/v1/projects/" + $routeParams.projectId).success(function(data) {
       $scope.project = data
     });
-
   };
+
+  setTimeout(function(){
+      //Sleep to get the data of current project
+
+      /*
+      [
+        {
+          "Id": 5,
+          "ProjectName": "testproject",
+          "RepoUrl": "",
+          "Branch": "",
+          "Commit": "",
+          "CommitTime": "0001-01-01T08:00:00+08:00",
+          "Committer": "",
+          "BuildTime": "0001-01-01T08:00:00+08:00",
+          "Status": 0
+        }
+      ]
+      */
+
+      $http.get("/v1/builds/all/project/" + scope.project.ProjectName).success(function(data) {
+        $scope.builds = data
+      });
+
+  }, 1000);
+
 
   // Change the current build
   $scope.changeProject = function(project) {
     $scope.project = project;
+    console.log("/v1/builds/all/project/" + $scope.project.ProjectName)
+    $http.get("/v1/builds/all/project/" + $scope.project.ProjectName).success(function(data) {
+      $scope.builds = data
+    });
   }
 
   // Post the data to record new build in database

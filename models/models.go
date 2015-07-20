@@ -56,6 +56,15 @@ func GetAllBuilds() []*Build {
 	return builds
 }
 
+func GetBuildsWithProjectName(projectName string) []*Build {
+	o := orm.NewOrm()
+
+	var builds []*Build
+	num, err := o.QueryTable("build").Filter("project_name", projectName).All(&builds)
+	fmt.Printf("Returned Rows Num: %s, %s", num, err)
+	return builds
+}
+
 func GetBuildWithId(buildId int64) Build {
 	o := orm.NewOrm()
 

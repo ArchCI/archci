@@ -48,19 +48,12 @@
                 </thead>
 
                 <tbody>
-                    <tr>
-                        <td>2</td>
-                        <td>ad3f42a7</td>
-                        <td>tobegit3hub</td>
-                        <td>2015-07-06 15:23:22</td>
-                        <td>Success</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>bd34asff</td>
-                        <td>tobegit3hub</td>
-                        <td>2015-07-16 15:23:22</td>
-                        <td>Success</td>
+                    <tr ng-repeat="build in builds">
+                        <td>build.Id</td>
+                        <td>build.Commit</td>
+                        <td>build.Committer</td>
+                        <td>build.BuildTime</td>
+                        <td>build.Status</td>
                     </tr>
                 </tbody>
             </table>

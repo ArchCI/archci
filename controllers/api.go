@@ -56,6 +56,18 @@ func (c *ApiController) GetBuildsAll() {
 	c.ServeJson()
 }
 
+// Get builds with project name
+func (c *ApiController) GetBuildsWithProjectName() {
+	glog.Info("Get builds with project name")
+
+	projectName := c.GetString(":projectName")
+
+	builds := models.GetBuildsWithProjectName(projectName)
+
+	c.Data["json"] = builds
+	c.ServeJson()
+}
+
 // Get one build with build id
 func (c *ApiController) GetBuild() {
 	glog.Info("Get build")
