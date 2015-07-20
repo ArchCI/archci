@@ -215,7 +215,7 @@ archciControllers.controller('ProjectsController', ['$scope', '$routeParams', '$
         */
 
         var data = {"Id": project.Id,
-                    "ProjectName": "tobe/testporject",
+                    "ProjectName": project.ProjectName,
                     "RepoUrl": project.RepoUrl
         }
 
@@ -254,7 +254,5 @@ archciControllers.controller('WorkersController', ['$scope', '$routeParams', '$h
   $http.get("/v1/workers/all/status/1").success(function(data) {
     $scope.idleWorkers = data;
   });
-
-
 
 }]);

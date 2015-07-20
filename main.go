@@ -10,7 +10,7 @@ import (
 
 const (
 	_MYSQL_DRIVER = "mysql"
-	_DATASOURCE   = "root:@/my_db?charset=utf8"
+	_DATASOURCE   = "root:@/archci?charset=utf8"
 )
 
 func init() {
