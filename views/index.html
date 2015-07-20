@@ -11,10 +11,13 @@
     <link rel="shortcut icon" href="static/img/favicon.ico" type="image/x-icon" />
 
     <!-- Css -->
-    <link rel="stylesheet" type="text/css" href="static/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" type="text/css" href="static/bower_components/bootstrap/dist/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="static/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="static/bower_components/jquery.gritter/css/jquery.gritter.css">
     <link rel="stylesheet" type="text/css" href="static/bower_components/animate.css/animate.min.css">
     <link rel="stylesheet" type="text/css" href="static/bower_components/Hover/css/hover-min.css">
+
+    <link rel="stylesheet" type="text/css" href="static/css/flatly.bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="static/css/style.css">
 
     <!-- JavaScript -->
@@ -59,8 +62,8 @@
                         <li class="animate-nav" ng-hide="isEnUs()"><a href="" ng-click="changeLanguage('en-us')">{{'en_us'|translate}}</a></li>
                         <li class="animate-nav" ng-hide="isZhCn()"><a href="" ng-click="changeLanguage('zh-cn')">{{'zh_cn'|translate}}</a></li>
                         <li class="animate-nav" ng-hide="isZhHant()"><a href="" ng-click="changeLanguage('zh-hant')">{{'zh_hant'|translate}}</a></li>
-                        <li class="animate-nav"><a href="http://archci.com:8000" >{{'documents'|translate}}</a></li>
-                        <li class="animate-nav"><a href="https://github.com/ArchCI/archci/issues">{{'ask_question'|translate}}</a></li>
+                        <li class="animate-nav"><a href="http://archci.com:8000" targe="_blank">{{'documents'|translate}}</a></li>
+                        <li class="animate-nav"><a href="https://github.com/ArchCI/archci/issues" targe="_blank">{{'ask_question'|translate}}</a></li>
                     </ul>
                 </li>
             </ul>

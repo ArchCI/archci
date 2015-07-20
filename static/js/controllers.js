@@ -197,7 +197,6 @@ archciControllers.controller('ProjectsController', ['$scope', '$routeParams', '$
 
     $http.get("/v1/builds/all/project/" + $scope.project.ProjectName).success(function(data) {
       $scope.builds = data
-      console.log(data)
     });
 
   }
