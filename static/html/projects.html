@@ -1,9 +1,6 @@
 <!-- The projects page -->
 <div ng-controller="ProjectsController">
 
-
-    <br/><br/><br/>
-
     <!-- Modal to add server -->
     <div class="modal fade" id="addProject" tabindex="-1" role="dialog" aria-labelledby="addServerModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -11,7 +8,7 @@
 
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="addServerModalLabel">Add Remote Server</h4>
+                    <h3 class="modal-title" id="addServerModalLabel">Confirm project information</h3>
                 </div>
 
                 <div class="modal-body">
@@ -34,7 +31,7 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" aria-hidden="true" ng-click="addProject(projectName, repoUrl, committer)">Save changes</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" aria-hidden="true" ng-click="addProject(projectName, repoUrl, committer)">Add Project</button>
                 </div>
 
             </div>
@@ -45,17 +42,28 @@
 
         <div class="col-md-3">
 
-            <button ng-click="triggerCI(project)" class="btn btn-info hvr-shadow" type="submit" data-toggle="modal" data-target="#addProject">Add Project</button>
+            <!-- Button to add project -->
+            <div>
+                <button style="width:100%" ng-click="triggerCI(project)" class="btn btn-info hvr-shadow" type="submit" data-toggle="modal" data-target="#addProject">Add Project</button>
+            </div>
+
+            <br/>
 
             <!-- Search input -->
-            <input type="text" class="form-control search" placeholder="{{'search'|translate}}" ng-model="search" autofocus>
+            <div>
+                <input type="text" class="form-control search" placeholder="{{'search'|translate}}" ng-model="search" autofocus>
+            </div>
+
+            <br/>
 
             <!-- List all the projects -->
-            <ul class="list-unstyled" ng-repeat="project in projects | filter: search">
-                <tr>
-                    <p><a href="" ng-click="changeProject(project)">{{project.ProjectName}}</a></p>
-                </tr>
-            </ul>
+            <div ng-repeat="project in projects | filter: search">
+                <div class="list-group">
+                    <a href="" ng-click=ng-click="changeProject(project)" class="list-group-item">
+                        <p class="list-group-item-heading">{{project.UserName}}/{{project.ProjectName}}</p>
+                    </a>
+                </div>
+            </div>
 
             <!-- When search result is null, display the message -->
             <div ng-show="(projects | filter: search).length == 0">
@@ -67,7 +75,7 @@
 
         <div class="col-md-9">
 
-            <h3>Project: {{project.ProjectName}}</h3>
+            <h1><a href="/projects/{{project.Id}}">{{project.UserName}}/{{project.ProjectName}}</a></h1>
 
             <p><span>RepoUrl: {{project.RepoUrl}}</span></p>
 

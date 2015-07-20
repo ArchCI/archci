@@ -1,8 +1,6 @@
 <!-- The builds page -->
 <div ng-controller="BuildsController">
 
-    <br/><br/><br/>
-
     <div class="row">
 
         <div class="col-md-3">
@@ -10,12 +8,19 @@
             <!-- Search input -->
             <input type="text" class="form-control search" placeholder="{{'search'|translate}}" ng-model="search" autofocus>
 
+            <br/>
+
             <!-- List all the builds -->
-            <ul class="list-unstyled" ng-repeat="build in builds | filter: search">
-                <tr>
-                    <p><a href="" ng-click="changeBuild(build)">{{build.ProjectName}}</a></p>
-                </tr>
-            </ul>
+            <div ng-repeat="build in builds | filter: search">
+
+                <div class="list-group">
+                    <a href="" ng-click="changeBuild(build)" class="list-group-item">
+                        <p class="list-group-item-heading">{{build.UserName}}/{{build.ProjectName}}</p>
+                        <p class="list-group-item-text">{{build.Commit}}</p>
+                        <p class="list-group-item-text">{{build.BuildTime}}</p>
+                    </a>
+                </div>
+            </div>
 
             <!-- When search result is null, display the message -->
             <div ng-show="(builds | filter: search).length == 0">
@@ -27,7 +32,7 @@
 
         <div class="col-md-9">
 
-            <h3><a ng-href="/projects/{{build.ProjectId}}">{{build.ProjectName}}</a></h3>
+            <h1><a ng-href="/projects/{{build.ProjectId}}">{{build.UserName}}/{{build.ProjectName}}</a></h1>
 
             <p><span>Branch: {{build.Branch}}</span> &nbsp;&nbsp; <span>Commit: {{build.Commit}}</span></p>
 

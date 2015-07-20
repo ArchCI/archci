@@ -18,7 +18,8 @@ const (
 // More setting in http://beego.me/docs/mvc/model/models.md
 type Project struct {
 	Id          int64  `orm:"pk;auto"`
-	ProjectName string `orm:"unique"` // TODO(tobe): add size(1024)
+	UserName	string `orm:"size(1024)"`
+	ProjectName string `orm:"size(1024)"`
 	RepoUrl     string `orm:"size(1024)"`
 	Status      int
 }
@@ -26,6 +27,7 @@ type Project struct {
 type Build struct {
 	Id          int64 `orm:"pk;auto"`
 	ProjectId   int64
+	UserName	string `orm:"size(1024)"`
 	ProjectName string `orm:"size(1024)"`
 	RepoUrl     string `orm:"size(1024)"`
 	Branch      string `orm:"size(1024)"`
