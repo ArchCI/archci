@@ -9,10 +9,15 @@ import (
 )
 
 const (
-	STATUS_NOT_TEST = 0
-	STATUS_TESTING  = 1
-	STATUS_SUCESS   = 2
-	STATUS_FAIL     = 3
+	BUILD_STATUS_NEED_TEST = 0
+	BUILD_STATUS_TESTING   = 1
+	BUILD_STATUS_SUCESS    = 2
+	BUILD_STATUS_FAIL      = 3
+
+	PROJECT_STATUS_NOT_TESTED = 0
+	PROJECT_STATUS_TESTING    = 1
+	PROJECT_STATUS_SUCCESS    = 2
+	PROJECT_STATUS_FAIL       = 3
 )
 
 // More setting in http://beego.me/docs/mvc/model/models.md
