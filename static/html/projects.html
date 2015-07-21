@@ -2,7 +2,7 @@
 <div ng-controller="ProjectsController">
 
     <!-- Modal to add project -->
-    <div class="modal fade" id="addProject" tabindex="-1" role="dialog" aria-labelledby="addServerModalLabel" aria-hidden="true">
+    <div class="modal fade" id="addProjectModal" tabindex="-1" role="dialog" aria-labelledby="addServerModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
 
@@ -30,7 +30,7 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" aria-hidden="true" ng-click="addProject(userName, projectName, repoUrl)">Add Project</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" aria-hidden="true" ng-click="aaddProject(userName, projectName, repoUrl)">Add Project</button>
                 </div>
 
             </div>
@@ -45,7 +45,7 @@
 
             <!-- Button to add project -->
             <div>
-                <button style="width:100%" ng-click="triggerCI(project)" class="btn btn-info hvr-shadow" type="submit" data-toggle="modal" data-target="#addProject">Add Project</button>
+                <button style="width:100%" class="btn btn-info hvr-shadow" type="submit" data-toggle="modal" data-target="#addProjectModal">Add Project</button>
             </div>
 
             <br/>

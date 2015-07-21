@@ -217,13 +217,11 @@ archciControllers.controller('ProjectsController', ['$scope', '$routeParams', '$
         $scope.add_status = "success";
     })
 
-  /*
-  setTimeout(function(){
-    $http.get("/v1/projects/all").success(function(data) {
-      $scope.projects = data;
-    });
-  }, 500);
-  */
+    setTimeout(function(){
+      $http.get("/v1/projects/all").success(function(data) {
+        $scope.projects = data;
+      });
+    }, 500);
 
   }
 
