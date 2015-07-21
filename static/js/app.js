@@ -98,6 +98,7 @@ archci.config(function ($translateProvider) {
     zh_cn: '简体中文',
     zh_hant: '繁體中文',
     documents: 'Documents',
+    fork_me: 'Fork Me'
     ask_question: 'Ask Question',
 
     // Build page
@@ -117,6 +118,7 @@ archci.config(function ($translateProvider) {
     zh_cn: '简体中文',
     zh_hant: '繁體中文',
     documents: '文档中心',
+    fork_me: '参与社区'，
     ask_question: '提交问题',
 
     // Build page
@@ -135,6 +137,7 @@ archci.config(function ($translateProvider) {
     en_us: 'English',
     zh_cn: '简体中文',
     zh_hant: '繁體中文',
+    fork_me: '參與社區',
     documents: '文檔中心',
     ask_question: '提交問題',
 

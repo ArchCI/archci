@@ -228,15 +228,6 @@ archciControllers.controller('ProjectsController', ['$scope', '$routeParams', '$
   // Post the data to record new build in database
   $scope.triggerCI = function(project) {
 
-    /*
-    var data = $.param({
-        json: JSON.stringify({
-            ProjectId: project.Id,
-            ProjectName: project.ProjectName
-        })
-    });
-    */
-
     var data = {"Id": project.Id,
                 "ProjectName": project.ProjectName,
                 "RepoUrl": project.RepoUrl
@@ -244,12 +235,15 @@ archciControllers.controller('ProjectsController', ['$scope', '$routeParams', '$
 
     $http.post("/v1/builds/new", data).success(function(data, status) {
         // TODO(tobe): add notification if success or fail
-        $scope.add_status = "success";
+        $scope.trigger_ci_status = "success";
     })
 
-    $http.get("/v1/builds/all/project/" + $scope.project.ProjectName).success(function(data) {
-      $scope.builds = data;
-    });
+    setTimeout(function(){
+      $http.get("/v1/builds/all/project/" + $scope.project.ProjectName).success(function(data) {
+        $scope.builds = data;
+      });
+    }, 500);
+
   }
 
 }]);
