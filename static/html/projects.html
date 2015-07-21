@@ -42,6 +42,8 @@
 
         <div class="col-md-3">
 
+            <br/>
+
             <!-- Button to add project -->
             <div>
                 <button style="width:100%" ng-click="triggerCI(project)" class="btn btn-info hvr-shadow" type="submit" data-toggle="modal" data-target="#addProject">Add Project</button>
@@ -59,7 +61,7 @@
             <!-- List all the projects -->
             <div ng-repeat="project in projects | filter: search">
                 <div class="list-group">
-                    <a href="" ng-click=ng-click="changeProject(project)" class="list-group-item">
+                    <a href="" ng-click="changeProject(project)" class="list-group-item">
                         <p class="list-group-item-heading">{{project.UserName}}/{{project.ProjectName}}</p>
                     </a>
                 </div>
@@ -75,18 +77,20 @@
 
         <div class="col-md-9">
 
-            <h1><a href="/projects/{{project.Id}}">{{project.UserName}}/{{project.ProjectName}}</a></h1>
-
-            <p><span>RepoUrl: {{project.RepoUrl}}</span></p>
-
-            <p><span>Status: {{project.Status}}</span></p>
-
-            <button ng-click="triggerCI(project)" class="btn btn-info hvr-shadow" type="submit">Trigger CI</button>
+            <h1>
+                <a ng-href="{{project.RepoUrl}}" targe="_blank">{{project.UserName}}/{{project.ProjectName}}</a>
+                <small>
+                    <span class="btn-group">
+                        <button ng-click="triggerCI(project)" class="btn btn-success btn-sm hvr-shadow" type="submit">Trigger CI</button>
+                    </span>
+                </small>
+            </h1>
 
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
                         <th>Build ID</th>
+                        <th>Branch</th>
                         <th>Commit</th>
                         <th>Committer</th>
                         <th>Build time</th>
@@ -95,8 +99,9 @@
                 </thead>
 
                 <tbody>
-                    <tr ng-repeat="build in builds">
+                    <tr ng-repeat="build in builds | reverse">
                         <td><a ng-href="/builds/{{build.Id}}">{{build.Id}}</a></td>
+                        <td>{{build.Branch}}</td>
                         <td>{{build.Commit}}</td>
                         <td>{{build.Committer}}</td>
                         <td>{{build.BuildTime}}</td>

@@ -45,6 +45,12 @@ archci.config(['$locationProvider', '$routeProvider',
   }]
 );
 
+archci.filter('reverse', function() {
+  return function(items) {
+    return items.slice().reverse();
+  };
+});
+
 /* Refer to http://www.ng-newsletter.com/posts/angular-translate.html for i18n */
 archci.controller('IndexController', function ($scope, $rootScope, $translate, $route, $http) {
 

@@ -165,35 +165,33 @@ archciControllers.controller('ProjectsController', ['$scope', '$routeParams', '$
   };
 
   setTimeout(function(){
-      //Sleep to get the data of current project
+    //Sleep to get the data of current project
 
-      /*
-      [
-        {
-          "Id": 5,
-          "ProjectName": "testproject",
-          "RepoUrl": "",
-          "Branch": "",
-          "Commit": "",
-          "CommitTime": "0001-01-01T08:00:00+08:00",
-          "Committer": "",
-          "BuildTime": "0001-01-01T08:00:00+08:00",
-          "Status": 0
-        }
-      ]
-      */
+    /*
+    [
+      {
+        "Id": 5,
+        "ProjectName": "testproject",
+        "RepoUrl": "",
+        "Branch": "",
+        "Commit": "",
+        "CommitTime": "0001-01-01T08:00:00+08:00",
+        "Committer": "",
+        "BuildTime": "0001-01-01T08:00:00+08:00",
+        "Status": 0
+      }
+    ]
+    */
 
-      $http.get("/v1/builds/all/project/" + $scope.project.ProjectName).success(function(data) {
-        $scope.builds = data
-      });
+    $http.get("/v1/builds/all/project/" + $scope.project.ProjectName).success(function(data) {
+      $scope.builds = data
+    });
 
   }, 1000);
 
   // Change the current build
   $scope.changeProject = function(project) {
     $scope.project = project;
-
-    console.log("/v1/builds/all/project/" + $scope.project.ProjectName)
 
     $http.get("/v1/builds/all/project/" + $scope.project.ProjectName).success(function(data) {
       $scope.builds = data
@@ -211,39 +209,49 @@ archciControllers.controller('ProjectsController', ['$scope', '$routeParams', '$
     $http.post("/v1/projects/new", data).success(function(data, status) {
         // TODO(tobe): add notification if success or fail
         $scope.add_status = "success";
-        //alert("success");
+        alert("Success to add project");
     })
 
     $http.post("/v1/builds/new", data).success(function(data, status) {
         // TODO(tobe): add notification if success or fail
         $scope.add_status = "success";
-        alert("success to add build")
     })
+
+  /*
+  setTimeout(function(){
+    $http.get("/v1/projects/all").success(function(data) {
+      $scope.projects = data;
+    });
+  }, 500);
+  */
 
   }
 
   // Post the data to record new build in database
   $scope.triggerCI = function(project) {
 
-        /*
-        var data = $.param({
-            json: JSON.stringify({
-                ProjectId: project.Id,
-                ProjectName: project.ProjectName
-            })
-        });
-        */
-
-        var data = {"Id": project.Id,
-                    "ProjectName": project.ProjectName,
-                    "RepoUrl": project.RepoUrl
-        }
-
-        $http.post("/v1/builds/new", data).success(function(data, status) {
-            // TODO(tobe): add notification if success or fail
-            $scope.add_status = "success";
+    /*
+    var data = $.param({
+        json: JSON.stringify({
+            ProjectId: project.Id,
+            ProjectName: project.ProjectName
         })
+    });
+    */
 
+    var data = {"Id": project.Id,
+                "ProjectName": project.ProjectName,
+                "RepoUrl": project.RepoUrl
+    }
+
+    $http.post("/v1/builds/new", data).success(function(data, status) {
+        // TODO(tobe): add notification if success or fail
+        $scope.add_status = "success";
+    })
+
+    $http.get("/v1/builds/all/project/" + $scope.project.ProjectName).success(function(data) {
+      $scope.builds = data;
+    });
   }
 
 }]);
