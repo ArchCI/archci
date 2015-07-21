@@ -229,6 +229,7 @@ archciControllers.controller('ProjectsController', ['$scope', '$routeParams', '$
   $scope.triggerCI = function(project) {
 
     var data = {"Id": project.Id,
+                "UserName": project.UserName,
                 "ProjectName": project.ProjectName,
                 "RepoUrl": project.RepoUrl
     }

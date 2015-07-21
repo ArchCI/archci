@@ -80,7 +80,7 @@ func GetBuildWithId(buildId int64) Build {
 
 func AddBuildWithProject(project Project) error {
 	o := orm.NewOrm()
-	build := Build{ProjectName: project.ProjectName, RepoUrl: project.RepoUrl, Branch: "master", BuildTime: time.Now(), CommitTime: time.Now()}
+	build := Build{UserName: project.UserName, ProjectName: project.ProjectName, RepoUrl: project.RepoUrl, Branch: "master", BuildTime: time.Now(), CommitTime: time.Now()}
 	_, err := o.Insert(&build)
 	fmt.Printf("ERR: %v\n", err)
 	return err
