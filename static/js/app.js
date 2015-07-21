@@ -45,6 +45,7 @@ archci.config(['$locationProvider', '$routeProvider',
   }]
 );
 
+// TODO(tobe): it works but throws "TypeError: Cannot read property 'slice' of undefined"
 archci.filter('reverse', function() {
   return function(items) {
     return items.slice().reverse();

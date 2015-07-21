@@ -35,6 +35,7 @@ type Build struct {
 	CommitTime  time.Time
 	Committer   string `orm:"size(1024)"`
 	BuildTime   time.Time
+	Worker		string `orm:"size(1024)"`
 	Status      int
 }
 

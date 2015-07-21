@@ -37,12 +37,24 @@
 
             <h1><a ng-href="/projects/{{build.ProjectId}}">{{build.UserName}}/{{build.ProjectName}}</a></h1>
 
-            <p><span>Branch: {{build.Branch}}</span> &nbsp;&nbsp; <span>Commit: {{build.Commit}}</span></p>
+            <table border="0" width="75%">
+                <tr>
+                    <td><b>Branch:</b> {{build.Branch}}</td>
+                    <td><b>Commit:</b> {{build.Committer}}</td>
+                </tr>
+                <tr>
+                    <td><b>Commiter:</b> {{build.Commit}}</td>
+                    <td><b>Worker:</b> {{build.Worker}}</td>
+                </tr>
+                <tr>
+                    <td><b>Build time:</b> {{build.BuildTime}}</td>
+                    <td><b>Finish:</b> true</td>
+                </tr>
+            </table>
 
-            <p><span>Worker: 127.0.0.1</span> &nbsp;&nbsp; <span>Commiter: {{build.Committer}}</span></p>
+            <hr/>
 
-            <p><span>Build time: {{build.BuildTime}}</span> &nbsp;&nbsp; <span>Finish: true</span></p>
-
+            <!-- Log console -->
             <div>
                 <pre style="marginTop:20;padding:10;background:#000;color:#fafafa"><code>{{fullLog}}</code></pre>
             </div>
