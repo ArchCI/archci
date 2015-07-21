@@ -6,7 +6,7 @@
 
 * Base on light-weight docker containers
 * Provide RESTful APIs and command-line tool
-* Support `.archci.yml` for coninues integration
+* Support `.archci.yml` for continues integration
 * 100% open-source, 100% golang and 100% docker
 
 ## Componenets
@@ -22,10 +22,10 @@ Docker: [docker-distribution](https://github.com/ArchCI)
 ## Usage
 
 ```
-docker run -d --net=host archci/demo
+docker run -d --net=host archci/archci
 ```
 
-To add CI for your projects, please go to <127.0.0.1:10010>.
+Please make sure MySQL and redis start and go to <127.0.0.1:10010>.
 
 ## Screenshots
 
