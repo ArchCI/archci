@@ -1,32 +1,56 @@
 <!-- The workers page -->
 <div ng-controller="WorkersController">
 
+    <br/>
+
     <div class="row">
         <div class="col-md-3">
-            <h4>Busy</h4>
+            <h3>Busy</h3>
         </div>
 
         <div class="col-md-9">
             <ul class="list-unstyled" ng-repeat="worker in busyWorkers">
                 <li>
-                    <pre>{{worker.Ip}}  ({{worker.LastUpdate}})</pre>
+                    <div class="alert alert-success">{{worker.Ip}} ({{worker.LastUpdate}})</div>
                 </li>
             </ul>
         </div>
     </div>
 
+    <hr/>
+
     <div class="row">
+
         <div class="col-md-3">
-            <h4>Idle</h4>
+            <h3>Idle</h3>
         </div>
 
         <div class="col-md-9">
             <ul class="list-unstyled" ng-repeat="worker in idleWorkers">
                 <li>
-                    <pre>{{worker.Ip}}  ({{worker.LastUpdate}})</pre>
+                    <div class="alert alert-warning">{{worker.Ip}} ({{worker.LastUpdate}})</div>
                 </li>
             </ul>
         </div>
+
+    </div>
+
+    <hr/>
+
+    <div class="row">
+
+        <div class="col-md-3">
+            <h3>Die</h3>
+        </div>
+
+        <div class="col-md-9">
+            <ul class="list-unstyled" ng-repeat="worker in idleWorkers">
+                <li>
+                    <div class="alert alert-danger">{{worker.Ip}} ({{worker.LastUpdate}})</div>
+                </li>
+            </ul>
+        </div>
+
     </div>
 
 </div> <!-- End of this angular page -->

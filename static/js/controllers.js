@@ -283,4 +283,7 @@ archciControllers.controller('WorkersController', ['$scope', '$routeParams', '$h
     $scope.idleWorkers = data;
   });
 
+  $http.get("/v1/workers/all/status/2").success(function(data) {
+    $scope.dieWorkers = data;
+  });
 }]);
