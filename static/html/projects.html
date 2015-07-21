@@ -1,7 +1,7 @@
 <!-- The projects page -->
 <div ng-controller="ProjectsController">
 
-    <!-- Modal to add server -->
+    <!-- Modal to add project -->
     <div class="modal fade" id="addProject" tabindex="-1" role="dialog" aria-labelledby="addServerModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -15,15 +15,14 @@
 
                     <form role="form" >
                         <div class="form-group">
-                            Project name: <input class="form-control" placeholder="test-project" ng-model="projectName">
+                            User name: <input class="form-control" type="text" placeholder="ArchCI" ng-model="userName">
                         </div>
 
                         <div class="form-group">
-                            Repo url: <input class="form-control" placeholder="https://github.com/tobegit3hub/test-project.git" ng-model="repoUrl">
+                            Project name: <input class="form-control" type="text" placeholder="archci" ng-model="projectName">
                         </div>
-
                         <div class="form-group">
-                            Committer: <input class="form-control" placeholder="tobe" ng-model="committer">
+                            Repo url: <input class="form-control" type="text" placeholder="https://github.com/{{userName}}/{{projectName}}.git" ng-model="repoUrl">
                         </div>
                     </form>
 
@@ -31,7 +30,7 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" aria-hidden="true" ng-click="addProject(projectName, repoUrl, committer)">Add Project</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" aria-hidden="true" ng-click="addProject(userName, projectName, repoUrl)">Add Project</button>
                 </div>
 
             </div>

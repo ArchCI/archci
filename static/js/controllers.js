@@ -199,11 +199,11 @@ archciControllers.controller('ProjectsController', ['$scope', '$routeParams', '$
 
   }
 
-  $scope.addProject = function(projectName, repoUrl, committer) {
+  $scope.addProject = function(userName, projectName, repoUrl) {
 
-    var data = {"ProjectName": projectName,
-                "RepoUrl": repoUrl,
-                "Committer": committer
+    var data = {"UserName": userName,
+                "ProjectName": projectName,
+                "RepoUrl": repoUrl
     }
 
     $http.post("/v1/projects/new", data).success(function(data, status) {

@@ -170,18 +170,12 @@ func (c *ApiController) NewProject() {
 
 	project := models.Project{}
 
-	fmt.Println("start to new project")
-	fmt.Println(c.Ctx.Input.RequestBody)
-
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &project); err != nil {
 		c.Ctx.Output.SetStatus(400)
 		c.Ctx.Output.Body([]byte("empty title"))
 		fmt.Println(err)
 		return
 	}
-
-	fmt.Println(project.ProjectName)
-	fmt.Println(project.RepoUrl)
 
 	models.AddProject(project)
 }
