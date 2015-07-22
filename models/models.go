@@ -9,15 +9,16 @@ import (
 )
 
 const (
-	BUILD_STATUS_NEED_TEST = 0
-	BUILD_STATUS_TESTING   = 1
-	BUILD_STATUS_SUCESS    = 2
+	BUILD_STATUS_NOT_START = 0
+	BUILD_STATUS_BUILDING  = 1
+	BUILD_STATUS_SUCCESS   = 2
 	BUILD_STATUS_FAIL      = 3
+	BUILD_STATUS_CANCELED  = 4
 
-	PROJECT_STATUS_NOT_TESTED = 0
-	PROJECT_STATUS_TESTING    = 1
-	PROJECT_STATUS_SUCCESS    = 2
-	PROJECT_STATUS_FAIL       = 3
+	PROJECT_STATUS_NEED_TEST = 0
+	PROJECT_STATUS_TESTING   = 1
+	PROJECT_STATUS_SUCCESS   = 2
+	PROJECT_STATUS_FAIL      = 3
 )
 
 // More setting in http://beego.me/docs/mvc/model/models.md
@@ -40,6 +41,7 @@ type Build struct {
 	CommitTime  time.Time
 	Committer   string `orm:"size(1024)"`
 	BuildTime   time.Time
+	FinishTime  time.Time
 	Worker      string `orm:"size(1024)"`
 	Status      int
 }
