@@ -2,20 +2,37 @@
 
 ## Introduction
 
-ArchCI is the continues integration service integrated with open source projects.
+**ArchCI** is the distributed scalable continues integration service with docker.
 
-It's new and adopt lightweight container to run task. Thanks to docker ecosystem, we can use docker for resource isolation and kuberntes for scheduling tasks. For more information, please refer to [slides](http://slides.com/tobychan/archci).
+* Base on light-weight docker containers
+* Provide RESTful APIs and command-line tool
+* Support `.archci.yml` for continues integration
+* 100% open-source, 100% golang and 100% docker
+
+## Componenets
 
 Worker: [simple-worker](https://github.com/ArchCI/simple-worker), [kubernetes-worker](https://github.com/ArchCI/kubernetes-worker)
 
 Client: [aci](https://github.com/ArchCI/aci)
 
-Document: [docs](https://github.com/ArchCI/docs)
+Document: [docs](https://github.com/ArchCI/docs), [slides](http://slides.com/tobychan/archci)
 
 Docker: [docker-distribution](https://github.com/ArchCI)
 
 ## Usage
 
 ```
-docker run -d -p 10010:10010 archci/archci
+docker run -d --net=host archci/archci
 ```
+
+Please make sure MySQL and redis start and go to <127.0.0.1:10010>.
+
+## Screenshots
+
+![](./archci_builds_page.png)
+
+![](./archci_projects_page.png)
+
+## Development
+
+Refer to ArchCI documentation <http://archci.com:8000>.
