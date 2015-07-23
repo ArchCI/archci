@@ -19,6 +19,10 @@ const (
 	PROJECT_STATUS_TESTING   = 1
 	PROJECT_STATUS_SUCCESS   = 2
 	PROJECT_STATUS_FAIL      = 3
+
+	WORKER_STATUS_IDLE	 = 0
+	WORKER_STATUS_BUSY	 = 1
+	WORKER_STATUS_DIE	 = 2
 )
 
 // More setting in http://beego.me/docs/mvc/model/models.md

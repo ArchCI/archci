@@ -268,12 +268,13 @@ archciControllers.controller('WorkersController', ['$scope', '$routeParams', '$h
     }
   ]
   */
+
   $http.get("/v1/workers/all/status/0").success(function(data) {
-    $scope.busyWorkers = data;
+    $scope.idleWorkers = data;
   });
 
   $http.get("/v1/workers/all/status/1").success(function(data) {
-    $scope.idleWorkers = data;
+    $scope.busyWorkers = data;
   });
 
   $http.get("/v1/workers/all/status/2").success(function(data) {
