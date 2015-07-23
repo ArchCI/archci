@@ -55,6 +55,7 @@ archci.filter('reverse', function() {
 /* Refer to http://www.ng-newsletter.com/posts/angular-translate.html for i18n */
 archci.controller('IndexController', function ($scope, $rootScope, $translate, $route, $http, $cookieStore) {
 
+  // More theme in https://bootswatch.com/
   if ($cookieStore.get("theme")) {
     $scope.theme =  $cookieStore.get("theme")
   } else {
@@ -104,6 +105,7 @@ archci.config(function ($translateProvider) {
     builds: 'Builds',
     projects: 'Projects',
     workers: 'Workers',
+    theme: 'Theme',
     more: 'More',
     en_us: 'English',
     zh_cn: '简体中文',
@@ -124,6 +126,7 @@ archci.config(function ($translateProvider) {
     builds: '持续集成',
     projects: '所有项目',
     workers: '所有节点',
+    theme: '主题',
     more: '更多',
     en_us: 'English',
     zh_cn: '简体中文',
@@ -144,6 +147,7 @@ archci.config(function ($translateProvider) {
     builds: '持續集成',
     projects: '所有項目',
     workers: '所有節點',
+    theme: '主題',
     more: '更多',
     en_us: 'English',
     zh_cn: '简体中文',
