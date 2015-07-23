@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!-- Use angular and named it archci application -->
 <html ng-app="archci">
-<head>
+<head ng-controller="IndexController">
     <title>ArchCI</title>
     <meta charset="UTF-8">
     <base href="/">
@@ -16,7 +16,7 @@
     <link rel="stylesheet" type="text/css" href="static/bower_components/animate.css/animate.min.css">
     <link rel="stylesheet" type="text/css" href="static/bower_components/Hover/css/hover-min.css">
 
-    <link rel="stylesheet" type="text/css" href="static/css/flatly.bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="static/css/{{theme}}.bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="static/css/style.css">
 
     <!-- JavaScript -->
@@ -55,6 +55,14 @@
 
             <!-- A more button to change i18n languages and email me -->
             <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle animate-nav" data-toggle="dropdown" href="">{{'theme'|translate}} <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li class="animate-nav"><a href="" ng-click="changeTheme('flatly')">{{'flatly'|translate}}</a></li>
+                        <li class="animate-nav"><a href="" ng-click="changeTheme('bootstrap')">{{'bootstrap'|translate}}</a></li>
+                        <li class="animate-nav"><a href="" ng-click="changeTheme('united')">{{'united'|translate}}</a></li>
+                    </ul>
+                </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle animate-nav" data-toggle="dropdown" href="">{{'more'|translate}} <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">

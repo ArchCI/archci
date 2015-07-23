@@ -53,10 +53,21 @@ archci.filter('reverse', function() {
 });
 
 /* Refer to http://www.ng-newsletter.com/posts/angular-translate.html for i18n */
-archci.controller('IndexController', function ($scope, $rootScope, $translate, $route, $http) {
+archci.controller('IndexController', function ($scope, $rootScope, $translate, $route, $http, $cookieStore) {
+
+  if ($cookieStore.get("theme")) {
+    $scope.theme =  $cookieStore.get("theme")
+  } else {
+    $scope.theme =  "flatly"
+  }
+
+  $scope.changeTheme = function(theme) {
+    $cookieStore.put("theme", theme)
+    window.location.reload(false);
+  }
 
   /* Change languages with the language string */
-  $scope.changeLanguage = function (key) {
+  $scope.changeLanguage = function(key) {
     $translate.use(key);
   };
 
