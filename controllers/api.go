@@ -270,3 +270,148 @@ func (c *ApiController) GetWorkers() {
 	result := "{data: 1}"
 	c.Ctx.WriteString(result)
 }
+
+// Process github push hook
+func (c *ApiController) HookGithubPush() {
+	glog.Info("Trigger github push hook")
+
+	/*
+	{
+	  "zen": "Mind your words, they are important.",
+	  "hook_id": 5371014,
+	  "hook": {
+		"url": "https://api.github.com/repos/ArchCI/success-test/hooks/5371014",
+		"test_url": "https://api.github.com/repos/ArchCI/success-test/hooks/5371014/test",
+		"ping_url": "https://api.github.com/repos/ArchCI/success-test/hooks/5371014/pings",
+		"id": 5371014,
+		"name": "web",
+		"active": true,
+		"events": [
+		  "push"
+		],
+		"config": {
+		  "url": "http://192.168.1.113:10010/v1/hook/github/push",
+		  "content_type": "json",
+		  "insecure_ssl": "0",
+		  "secret": "********"
+		},
+		"last_response": {
+		  "code": null,
+		  "status": "unused",
+		  "message": null
+		},
+		"updated_at": "2015-07-22T14:48:22Z",
+		"created_at": "2015-07-22T14:48:22Z"
+	  },
+	  "repository": {
+		"id": 39022734,
+		"name": "success-test",
+		"full_name": "ArchCI/success-test",
+		"owner": {
+		  "login": "ArchCI",
+		  "id": 12673804,
+		  "avatar_url": "https://avatars.githubusercontent.com/u/12673804?v=3",
+		  "gravatar_id": "",
+		  "url": "https://api.github.com/users/ArchCI",
+		  "html_url": "https://github.com/ArchCI",
+		  "followers_url": "https://api.github.com/users/ArchCI/followers",
+		  "following_url": "https://api.github.com/users/ArchCI/following{/other_user}",
+		  "gists_url": "https://api.github.com/users/ArchCI/gists{/gist_id}",
+		  "starred_url": "https://api.github.com/users/ArchCI/starred{/owner}{/repo}",
+		  "subscriptions_url": "https://api.github.com/users/ArchCI/subscriptions",
+		  "organizations_url": "https://api.github.com/users/ArchCI/orgs",
+		  "repos_url": "https://api.github.com/users/ArchCI/repos",
+		  "events_url": "https://api.github.com/users/ArchCI/events{/privacy}",
+		  "received_events_url": "https://api.github.com/users/ArchCI/received_events",
+		  "type": "Organization",
+		  "site_admin": false
+		},
+		"private": false,
+		"html_url": "https://github.com/ArchCI/success-test",
+		"description": "Success test project for ArchCI",
+		"fork": false,
+		"url": "https://api.github.com/repos/ArchCI/success-test",
+		"forks_url": "https://api.github.com/repos/ArchCI/success-test/forks",
+		"keys_url": "https://api.github.com/repos/ArchCI/success-test/keys{/key_id}",
+		"collaborators_url": "https://api.github.com/repos/ArchCI/success-test/collaborators{/collaborator}",
+		"teams_url": "https://api.github.com/repos/ArchCI/success-test/teams",
+		"hooks_url": "https://api.github.com/repos/ArchCI/success-test/hooks",
+		"issue_events_url": "https://api.github.com/repos/ArchCI/success-test/issues/events{/number}",
+		"events_url": "https://api.github.com/repos/ArchCI/success-test/events",
+		"assignees_url": "https://api.github.com/repos/ArchCI/success-test/assignees{/user}",
+		"branches_url": "https://api.github.com/repos/ArchCI/success-test/branches{/branch}",
+		"tags_url": "https://api.github.com/repos/ArchCI/success-test/tags",
+		"blobs_url": "https://api.github.com/repos/ArchCI/success-test/git/blobs{/sha}",
+		"git_tags_url": "https://api.github.com/repos/ArchCI/success-test/git/tags{/sha}",
+		"git_refs_url": "https://api.github.com/repos/ArchCI/success-test/git/refs{/sha}",
+		"trees_url": "https://api.github.com/repos/ArchCI/success-test/git/trees{/sha}",
+		"statuses_url": "https://api.github.com/repos/ArchCI/success-test/statuses/{sha}",
+		"languages_url": "https://api.github.com/repos/ArchCI/success-test/languages",
+		"stargazers_url": "https://api.github.com/repos/ArchCI/success-test/stargazers",
+		"contributors_url": "https://api.github.com/repos/ArchCI/success-test/contributors",
+		"subscribers_url": "https://api.github.com/repos/ArchCI/success-test/subscribers",
+		"subscription_url": "https://api.github.com/repos/ArchCI/success-test/subscription",
+		"commits_url": "https://api.github.com/repos/ArchCI/success-test/commits{/sha}",
+		"git_commits_url": "https://api.github.com/repos/ArchCI/success-test/git/commits{/sha}",
+		"comments_url": "https://api.github.com/repos/ArchCI/success-test/comments{/number}",
+		"issue_comment_url": "https://api.github.com/repos/ArchCI/success-test/issues/comments{/number}",
+		"contents_url": "https://api.github.com/repos/ArchCI/success-test/contents/{+path}",
+		"compare_url": "https://api.github.com/repos/ArchCI/success-test/compare/{base}...{head}",
+		"merges_url": "https://api.github.com/repos/ArchCI/success-test/merges",
+		"archive_url": "https://api.github.com/repos/ArchCI/success-test/{archive_format}{/ref}",
+		"downloads_url": "https://api.github.com/repos/ArchCI/success-test/downloads",
+		"issues_url": "https://api.github.com/repos/ArchCI/success-test/issues{/number}",
+		"pulls_url": "https://api.github.com/repos/ArchCI/success-test/pulls{/number}",
+		"milestones_url": "https://api.github.com/repos/ArchCI/success-test/milestones{/number}",
+		"notifications_url": "https://api.github.com/repos/ArchCI/success-test/notifications{?since,all,participating}",
+		"labels_url": "https://api.github.com/repos/ArchCI/success-test/labels{/name}",
+		"releases_url": "https://api.github.com/repos/ArchCI/success-test/releases{/id}",
+		"created_at": "2015-07-13T16:06:28Z",
+		"updated_at": "2015-07-22T02:12:02Z",
+		"pushed_at": "2015-07-22T02:12:02Z",
+		"git_url": "git://github.com/ArchCI/success-test.git",
+		"ssh_url": "git@github.com:ArchCI/success-test.git",
+		"clone_url": "https://github.com/ArchCI/success-test.git",
+		"svn_url": "https://github.com/ArchCI/success-test",
+		"homepage": null,
+		"size": 120,
+		"stargazers_count": 0,
+		"watchers_count": 0,
+		"language": "Go",
+		"has_issues": true,
+		"has_downloads": true,
+		"has_wiki": true,
+		"has_pages": false,
+		"forks_count": 0,
+		"mirror_url": null,
+		"open_issues_count": 0,
+		"forks": 0,
+		"open_issues": 0,
+		"watchers": 0,
+		"default_branch": "master"
+	  },
+	  "sender": {
+		"login": "tobegit3hub",
+		"id": 2715000,
+		"avatar_url": "https://avatars.githubusercontent.com/u/2715000?v=3",
+		"gravatar_id": "",
+		"url": "https://api.github.com/users/tobegit3hub",
+		"html_url": "https://github.com/tobegit3hub",
+		"followers_url": "https://api.github.com/users/tobegit3hub/followers",
+		"following_url": "https://api.github.com/users/tobegit3hub/following{/other_user}",
+		"gists_url": "https://api.github.com/users/tobegit3hub/gists{/gist_id}",
+		"starred_url": "https://api.github.com/users/tobegit3hub/starred{/owner}{/repo}",
+		"subscriptions_url": "https://api.github.com/users/tobegit3hub/subscriptions",
+		"organizations_url": "https://api.github.com/users/tobegit3hub/orgs",
+		"repos_url": "https://api.github.com/users/tobegit3hub/repos",
+		"events_url": "https://api.github.com/users/tobegit3hub/events{/privacy}",
+		"received_events_url": "https://api.github.com/users/tobegit3hub/received_events",
+		"type": "User",
+		"site_admin": false
+	  }
+	}
+	*/
+
+	result := "{github_hook: 111}"
+	c.Ctx.WriteString(result)
+}
