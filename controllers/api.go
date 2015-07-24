@@ -9,6 +9,7 @@ import (
 	"github.com/golang/glog"
 
 	"encoding/json"
+	"github.com/ArchCI/archci/githubutil"
 	"github.com/ArchCI/archci/gitlabutil"
 	"github.com/ArchCI/archci/models"
 	"github.com/ArchCI/archci/redisutil"
@@ -413,8 +414,20 @@ func (c *ApiController) TriggerGithubPushHook() {
 		}
 	*/
 
-	result := "{github_hook: 111}"
+	hook := githubutil.GithubPushHook{}
+
+	var result string
+
+	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &hook); err != nil {
+		c.Ctx.Output.SetStatus(400)
+		c.Ctx.Output.Body([]byte("empty title"))
+		fmt.Println(err)
+		result = "{success: false}"
+	}
+
+	result = "{success: true}"
 	c.Ctx.WriteString(result)
+
 }
 
 // Trigger gitlab push hook
@@ -422,41 +435,41 @@ func (c *ApiController) TriggerGitlabPushHook() {
 	glog.Info("Trigger gitlab push hook")
 
 	/*
-	{
-	"before":"dd80657a63bf284fc1b62c5242addac10c8ee68b",
-	"after":"f9ccf83322e36793a244cf2da379e358154bdd62",
-	"ref":"refs/heads/master",
-	"user_id":72,
-	"user_name":"chendihao",
-	"project_id":412,
-	"repository":{
-		"name":"gitlab_hook",
-		"url":"git@git.ustack.com:chendihao/gitlab_hook.git",
-		"description":"","homepage":"http://git.ustack.com/chendihao/gitlab_hook"
-	},
-	"commits":[
 		{
-			"id":"f9ccf83322e36793a244cf2da379e358154bdd62",
-			"message":"Add introduction in readme",
-			"timestamp":"2015-07-24T02:00:34+00:00",
-			"url":"http://git.ustack.com/chendihao/gitlab_hook/commit/f9ccf83322e36793a244cf2da379e358154bdd62",
-			"author":{
-				"name":"tobe",
-				"email":"tobeg3oogle@gmail.com"
+		"before":"dd80657a63bf284fc1b62c5242addac10c8ee68b",
+		"after":"f9ccf83322e36793a244cf2da379e358154bdd62",
+		"ref":"refs/heads/master",
+		"user_id":72,
+		"user_name":"chendihao",
+		"project_id":412,
+		"repository":{
+			"name":"gitlab_hook",
+			"url":"git@git.ustack.com:chendihao/gitlab_hook.git",
+			"description":"","homepage":"http://git.ustack.com/chendihao/gitlab_hook"
+		},
+		"commits":[
+			{
+				"id":"f9ccf83322e36793a244cf2da379e358154bdd62",
+				"message":"Add introduction in readme",
+				"timestamp":"2015-07-24T02:00:34+00:00",
+				"url":"http://git.ustack.com/chendihao/gitlab_hook/commit/f9ccf83322e36793a244cf2da379e358154bdd62",
+				"author":{
+					"name":"tobe",
+					"email":"tobeg3oogle@gmail.com"
+				}
+			},{
+				"id":"dd80657a63bf284fc1b62c5242addac10c8ee68b",
+				"message":"Add readme",
+				"timestamp":"2015-07-23T02:47:30+00:00",
+				"url":"http://git.ustack.com/chendihao/gitlab_hook/commit/dd80657a63bf284fc1b62c5242addac10c8ee68b",
+				"author":{
+					"name":"tobe",
+					"email":"tobeg3oogle@gmail.com"
+				}
 			}
-		},{
-			"id":"dd80657a63bf284fc1b62c5242addac10c8ee68b",
-			"message":"Add readme",
-			"timestamp":"2015-07-23T02:47:30+00:00",
-			"url":"http://git.ustack.com/chendihao/gitlab_hook/commit/dd80657a63bf284fc1b62c5242addac10c8ee68b",
-			"author":{
-				"name":"tobe",
-				"email":"tobeg3oogle@gmail.com"
-			}
+		],
+		"total_commits_count":2
 		}
-	],
-	"total_commits_count":2
-	}
 	*/
 
 	hook := gitlabutil.GitlabPushHook{}
