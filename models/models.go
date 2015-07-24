@@ -6,6 +6,8 @@ import (
 	"time"
 
 	"fmt"
+
+	"github.com/ArchCI/archci/gitlabutil"
 )
 
 const (
@@ -91,11 +93,59 @@ func GetBuildWithId(buildId int64) Build {
 
 func AddBuildWithProject(project Project) error {
 	o := orm.NewOrm()
+
 	build := Build{UserName: project.UserName, ProjectName: project.ProjectName, RepoUrl: project.RepoUrl, Branch: "master", BuildTime: time.Now(), CommitTime: time.Now()}
 	_, err := o.Insert(&build)
 	fmt.Printf("ERR: %v\n", err)
 	return err
 }
+
+func AddGitlabBuild(data gitlabutil.GitlabPushHook) error {
+	o := orm.NewOrm()
+
+	/*
+			Id          int64 `orm:"pk;auto"`
+		ProjectId   int64
+		UserName    string `orm:"size(1024)"`
+		ProjectName string `orm:"size(1024)"`
+		RepoUrl     string `orm:"size(1024)"`
+		Branch      string `orm:"size(1024)"`
+		Commit      string `orm:"size(1024"`
+		CommitTime  time.Time
+		Committer   string `orm:"size(1024)"`
+		BuildTime   time.Time
+		FinishTime  time.Time
+		Worker      string `orm:"size(1024)"`
+		Status      int
+	*/
+
+	// TODO(tobe): need to find project id by user name and project name
+	// TODO(tobe): no branch data from gitlab webhook
+	// TODO(tobe): should choose the latest commit
+	// TODO(tobe): build time and finish time should be null
+
+	build := Build{
+		UserName:    data.UserName,
+		ProjectName: data.Repository.Name,
+		RepoUrl:     data.Repository.URL,
+		Branch: "master",
+		Commit:     data.Commits[0].ID,
+		CommitTime: data.Commits[0].Timestamp,
+		Committer:  data.Commits[0].Author.Name,
+		BuildTime: time.Now(),
+		FinishTime: time.Now(),
+		Status:     BUILD_STATUS_NOT_START}
+
+	_, err := o.Insert(&build)
+	fmt.Println("ERR: %v\n", err)
+	return err
+}
+
+/*
+func AddGithubBuild() error {
+
+}
+*/
 
 // For advanced usage in http://beego.me/docs/mvc/model/query.md#all
 func GetAllProjects() []*Project {

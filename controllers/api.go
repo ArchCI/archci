@@ -474,15 +474,13 @@ func (c *ApiController) TriggerGitlabPushHook() {
 
 	hook := gitlabutil.GitlabPushHook{}
 
-	var result string
-
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &hook); err != nil {
 		c.Ctx.Output.SetStatus(400)
 		c.Ctx.Output.Body([]byte("empty title"))
 		fmt.Println(err)
-		result = "{success: false}"
 	}
 
-	result = "{success: true}"
-	c.Ctx.WriteString(result)
+	models.AddGitlabBuild(hook)
+
+	return
 }
