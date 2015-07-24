@@ -100,24 +100,8 @@ func AddBuildWithProject(project Project) error {
 	return err
 }
 
-func AddGitlabBuild(data gitlabutil.GitlabPushHook) error {
+func AddGitlabBuild(projectId int64, data gitlabutil.GitlabPushHook) error {
 	o := orm.NewOrm()
-
-	/*
-			Id          int64 `orm:"pk;auto"`
-		ProjectId   int64
-		UserName    string `orm:"size(1024)"`
-		ProjectName string `orm:"size(1024)"`
-		RepoUrl     string `orm:"size(1024)"`
-		Branch      string `orm:"size(1024)"`
-		Commit      string `orm:"size(1024"`
-		CommitTime  time.Time
-		Committer   string `orm:"size(1024)"`
-		BuildTime   time.Time
-		FinishTime  time.Time
-		Worker      string `orm:"size(1024)"`
-		Status      int
-	*/
 
 	// TODO(tobe): need to find project id by user name and project name
 	// TODO(tobe): no branch data from gitlab webhook
@@ -126,15 +110,16 @@ func AddGitlabBuild(data gitlabutil.GitlabPushHook) error {
 
 	build := Build{
 		UserName:    data.UserName,
+		ProjectId:   projectId,
 		ProjectName: data.Repository.Name,
 		RepoUrl:     data.Repository.URL,
-		Branch: "master",
-		Commit:     data.Commits[0].ID,
-		CommitTime: data.Commits[0].Timestamp,
-		Committer:  data.Commits[0].Author.Name,
-		BuildTime: time.Now(),
-		FinishTime: time.Now(),
-		Status:     BUILD_STATUS_NOT_START}
+		Branch:      "master",
+		Commit:      data.Commits[0].ID,
+		CommitTime:  data.Commits[0].Timestamp,
+		Committer:   data.Commits[0].Author.Name,
+		BuildTime:   time.Now(),
+		FinishTime:  time.Now(),
+		Status:      BUILD_STATUS_NOT_START}
 
 	_, err := o.Insert(&build)
 	fmt.Println("ERR: %v\n", err)
@@ -164,6 +149,31 @@ func GetProjectWithId(projectId int64) Project {
 	err := o.Read(&project)
 	fmt.Printf("ERR: %v\n", err)
 	return project
+}
+
+// Read or create the project in database
+func ReadOrCreateProject(userName string, projectName string, repoUrl string) (int64, error) {
+	o := orm.NewOrm()
+
+	project := Project{
+		UserName:    userName,
+		ProjectName: projectName,
+		RepoUrl:     repoUrl,
+	}
+
+	created, id, err := o.ReadOrCreate(&project, "UserName", "ProjectName", "RepoUrl")
+	if err == nil {
+		if created {
+			fmt.Println("New Insert an object. Id:", id)
+			return id, nil
+		} else {
+			fmt.Println("Get an object. Id:", id)
+			return id, nil
+		}
+	} else {
+		return 0, err
+	}
+
 }
 
 func GetAllWorkers() []*Worker {

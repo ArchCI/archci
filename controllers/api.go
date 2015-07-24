@@ -480,7 +480,9 @@ func (c *ApiController) TriggerGitlabPushHook() {
 		fmt.Println(err)
 	}
 
-	models.AddGitlabBuild(hook)
+	projectId, _ := models.ReadOrCreateProject(hook.UserName, hook.Repository.Name, hook.Repository.URL)
+
+	models.AddGitlabBuild(projectId, hook)
 
 	return
 }
