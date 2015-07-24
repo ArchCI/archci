@@ -6,7 +6,7 @@ import (
 )
 
 func init() {
-	// Route to archci web pages
+	// archci web pages
 	beego.Router("/", &controllers.MainController{})
 	beego.Router("/builds", &controllers.MainController{})
 	beego.Router("/builds/:buildId", &controllers.MainController{})
@@ -14,9 +14,10 @@ func init() {
 	beego.Router("/projects/:projectId", &controllers.MainController{})
 	beego.Router("/workers", &controllers.MainController{})
 
-	// Route to API server
+	// account api
 	beego.Router("/v1/account", &controllers.ApiController{}, "post:CreateAccount")
 
+	// builds api
 	beego.Router("/v1/builds/new", &controllers.ApiController{}, "post:NewBuild")
 	beego.Router("/v1/builds/all", &controllers.ApiController{}, "get:GetBuildsAll")
 	beego.Router("/v1/builds/all/project/:projectName", &controllers.ApiController{}, "get:GetBuildsWithProjectName")
@@ -28,15 +29,19 @@ func init() {
 	beego.Router("/v1/builds/:buildId/logs/:index", &controllers.ApiController{}, "get:GetBuildLogsIndex")
 	beego.Router("/v1/builds/:buildId/logs/all", &controllers.ApiController{}, "get:GetBuildLogsAll")
 
+	// projects api
 	beego.Router("/v1/projects/new", &controllers.ApiController{}, "post:NewProject")
 	beego.Router("/v1/projects/all", &controllers.ApiController{}, "get:GetProjectsAll")
 	beego.Router("/v1/projects/:projectId", &controllers.ApiController{}, "get:GetProject")
 
+	// workers api
 	beego.Router("/v1/workers/all", &controllers.ApiController{}, "get:GetWorkersAll")
 	// TODO(tobe): this is not really RESTful
 	beego.Router("/v1/workers/all/status/:status", &controllers.ApiController{}, "get:GetWorkersAllStatus")
 
-	beego.Router("/v1/hook/github/push", &controllers.ApiController{}, "post:HookGithubPush")
+	// hooks api
+	beego.Router("/v1/hook/github/push", &controllers.ApiController{}, "post:TriggerGithubPushHook")
+	beego.Router("/v1/hook/gitlab/push", &controllers.ApiController{}, "post:TriggerGitlabPushHook")
 
 	beego.Router("/v1/images", &controllers.ApiController{}, "post:CreateImage")
 	beego.Router("/v1/images", &controllers.ApiController{}, "get:GetImages")
