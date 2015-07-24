@@ -1,0 +1,1 @@
+http://121.201.52.197:10010/v1/hook/gitlab/push
