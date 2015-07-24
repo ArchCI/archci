@@ -416,17 +416,17 @@ func (c *ApiController) TriggerGithubPushHook() {
 
 	hook := githubutil.GithubPushHook{}
 
-	var result string
-
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &hook); err != nil {
 		c.Ctx.Output.SetStatus(400)
 		c.Ctx.Output.Body([]byte("empty title"))
 		fmt.Println(err)
-		result = "{success: false}"
 	}
 
-	result = "{success: true}"
-	c.Ctx.WriteString(result)
+	projectId, _ := models.ReadOrCreateProject(hook.Repository.Owner.Login, hook.Repository.Name, hook.Repository.URL)
+
+	models.AddGithubBuild(projectId, hook)
+
+	return
 
 }
 

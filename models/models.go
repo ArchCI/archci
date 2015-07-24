@@ -7,6 +7,7 @@ import (
 
 	"fmt"
 
+	"github.com/ArchCI/archci/githubutil"
 	"github.com/ArchCI/archci/gitlabutil"
 )
 
@@ -100,6 +101,29 @@ func AddBuildWithProject(project Project) error {
 	return err
 }
 
+func AddGithubBuild(projectId int64, data githubutil.GithubPushHook) error {
+	o := orm.NewOrm()
+
+	// TODO(tobe): could not get commit id, commit time and committer
+
+	build := Build{
+		UserName:    data.Repository.Owner.Login,
+		ProjectId:   projectId,
+		ProjectName: data.Repository.Name,
+		RepoUrl:     data.Repository.URL,
+		Branch:      data.Repository.DefaultBranch,
+		Commit:      "ffffffffff",
+		CommitTime:  time.Now(),
+		Committer:   "unknown",
+		BuildTime:   time.Now(),
+		FinishTime:  time.Now(),
+		Status:      BUILD_STATUS_NOT_START}
+
+	_, err := o.Insert(&build)
+	fmt.Println("ERR: %v\n", err)
+	return err
+}
+
 func AddGitlabBuild(projectId int64, data gitlabutil.GitlabPushHook) error {
 	o := orm.NewOrm()
 
@@ -125,12 +149,6 @@ func AddGitlabBuild(projectId int64, data gitlabutil.GitlabPushHook) error {
 	fmt.Println("ERR: %v\n", err)
 	return err
 }
-
-/*
-func AddGithubBuild() error {
-
-}
-*/
 
 // For advanced usage in http://beego.me/docs/mvc/model/query.md#all
 func GetAllProjects() []*Project {
@@ -173,7 +191,6 @@ func ReadOrCreateProject(userName string, projectName string, repoUrl string) (i
 	} else {
 		return 0, err
 	}
-
 }
 
 func GetAllWorkers() []*Worker {
