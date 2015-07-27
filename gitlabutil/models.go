@@ -4,6 +4,7 @@ import (
 	"time"
 )
 
+// GithubPushHook is the data of gitlab push webhook.
 type GitlabPushHook struct {
 	Before     string `json:"before"`
 	After      string `json:"after"`

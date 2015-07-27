@@ -5,6 +5,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 
 	"fmt"
+	"time"
 )
 
 const (
@@ -12,6 +13,14 @@ const (
 	WORKER_STATUS_BUSY = 1
 	WORKER_STATUS_DIE  = 2
 )
+
+
+type Worker struct {
+	Id         int64  `orm:"pk;auto"`
+	Ip         string `orm:"size(1024)"`
+	LastUpdate time.Time
+	Status     int
+}
 
 func GetAllWorkers() []*Worker {
 	o := orm.NewOrm()

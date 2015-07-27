@@ -17,7 +17,7 @@ type GetBuildLogsIndexResponse struct {
 	Next bool   `json:"next`
 }
 
-// New build record in database.
+// Newbuild processes POST data to build record and add it in database.
 func (c *ApiController) NewBuild() {
 	glog.Info("New build record")
 
@@ -33,7 +33,7 @@ func (c *ApiController) NewBuild() {
 	models.AddBuildWithProject(project)
 }
 
-// Get all builds from database.
+// GetBuildsAll read all builds from database.
 func (c *ApiController) GetBuildsAll() {
 	glog.Info("Get all builds")
 
@@ -43,7 +43,7 @@ func (c *ApiController) GetBuildsAll() {
 	c.ServeJson()
 }
 
-// Get builds with project name.
+// GetBuildsWithProjectName gets project name in url and return the project object.
 func (c *ApiController) GetBuildsWithProjectName() {
 	glog.Info("Get builds with project name")
 
@@ -55,7 +55,7 @@ func (c *ApiController) GetBuildsWithProjectName() {
 	c.ServeJson()
 }
 
-// Get one build with build id.
+// GetBuild gets the build id and return the build object.
 func (c *ApiController) GetBuild() {
 	glog.Info("Get build")
 
@@ -69,6 +69,7 @@ func (c *ApiController) GetBuild() {
 
 // Get active builds.
 func (c *ApiController) GetActiveBuilds() {
+	// TODO(tobe): this is not implemented because nobody uses it yet.
 	glog.Info("Get active builds")
 
 	result := "Not implemented"

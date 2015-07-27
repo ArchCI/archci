@@ -4,6 +4,7 @@ import (
 	"time"
 )
 
+// GithubPushHook is the data of github push webhook.
 type GithubPushHook struct {
 	Zen    string `json:"zen"`
 	HookID int    `json:"hook_id"`
