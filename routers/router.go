@@ -24,8 +24,6 @@ func init() {
 	beego.Router("/v1/builds/:buildId", &controllers.ApiController{}, "get:GetBuild")
 	beego.Router("/v1/builds/active", &controllers.ApiController{}, "get:GetActiveBuilds")
 	beego.Router("/v1/builds/search", &controllers.ApiController{}, "get:GetSearchBuilds")
-	beego.Router("/v1/builds/:buildId/logs", &controllers.ApiController{}, "get:GetBuildLog")
-	beego.Router("/v1/builds/:buildId/logs/:index", &controllers.ApiController{}, "post:PutBuildLogsIndex")
 	beego.Router("/v1/builds/:buildId/logs/:index", &controllers.ApiController{}, "get:GetBuildLogsIndex")
 	beego.Router("/v1/builds/:buildId/logs/all", &controllers.ApiController{}, "get:GetBuildLogsAll")
 
@@ -42,13 +40,4 @@ func init() {
 	// hooks api
 	beego.Router("/v1/hook/github/push", &controllers.ApiController{}, "post:TriggerGithubPushHook")
 	beego.Router("/v1/hook/gitlab/push", &controllers.ApiController{}, "post:TriggerGitlabPushHook")
-
-	beego.Router("/v1/images", &controllers.ApiController{}, "post:CreateImage")
-	beego.Router("/v1/images", &controllers.ApiController{}, "get:GetImages")
-	beego.Router("/v1/images/:id", &controllers.ApiController{}, "get:GetImage")
-
-	beego.Router("/v1/tasks", &controllers.ApiController{}, "get:GetTasks")
-	beego.Router("/v1/tasks/:id", &controllers.ApiController{}, "put:FinishTask")
-
-	beego.Router("/v1/workers", &controllers.ApiController{}, "get:GetWorkers")
 }

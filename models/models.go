@@ -31,26 +31,26 @@ const (
 // More setting in http://beego.me/docs/mvc/model/models.md
 type Project struct {
 	Id          int64  `orm:"pk;auto"`
-	UserName    string `orm:"size(1024)"`
-	ProjectName string `orm:"size(1024)"`
-	RepoUrl     string `orm:"size(1024)"`
-	Status      int
+	UserName    string `orm:"size(1024);null"`
+	ProjectName string `orm:"size(1024);null"`
+	RepoUrl     string `orm:"size(1024);null"`
+	Status      int    `orm:"null"`
 }
 
 type Build struct {
 	Id          int64 `orm:"pk;auto"`
 	ProjectId   int64
-	UserName    string `orm:"size(1024)"`
-	ProjectName string `orm:"size(1024)"`
-	RepoUrl     string `orm:"size(1024)"`
-	Branch      string `orm:"size(1024)"`
-	Commit      string `orm:"size(1024"`
-	CommitTime  time.Time
-	Committer   string `orm:"size(1024)"`
-	BuildTime   time.Time
-	FinishTime  time.Time
-	Worker      string `orm:"size(1024)"`
-	Status      int
+	UserName    string    `orm:"size(1024);null"`
+	ProjectName string    `orm:"size(1024);null"`
+	RepoUrl     string    `orm:"size(1024);null"`
+	Branch      string    `orm:"size(1024);null"`
+	Commit      string    `orm:"size(1024);null"`
+	CommitTime  time.Time `orm:"null"`
+	Committer   string    `orm:"size(1024);null"`
+	BuildTime   time.Time `orm:"null"`
+	FinishTime  time.Time `orm:"null"`
+	Worker      string    `orm:"size(1024);null"`
+	Status      int       `orm:"null"`
 }
 
 type Worker struct {

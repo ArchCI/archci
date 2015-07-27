@@ -24,15 +24,15 @@ type GetBuildLogsIndexResponse struct {
 	Next bool   `json:"next`
 }
 
-/* Create acount */
+// Create account.
 func (c *ApiController) CreateAccount() {
 	glog.Info("Creat accout")
 
-	result := "{data: 1}"
+	result := "Not implemented"
 	c.Ctx.WriteString(result)
 }
 
-// New build record in database
+// New build record in database.
 func (c *ApiController) NewBuild() {
 	glog.Info("New build record")
 
@@ -48,7 +48,7 @@ func (c *ApiController) NewBuild() {
 	models.AddBuildWithProject(project)
 }
 
-// Get all builds from database
+// Get all builds from database.
 func (c *ApiController) GetBuildsAll() {
 	glog.Info("Get all builds")
 
@@ -58,7 +58,7 @@ func (c *ApiController) GetBuildsAll() {
 	c.ServeJson()
 }
 
-// Get builds with project name
+// Get builds with project name.
 func (c *ApiController) GetBuildsWithProjectName() {
 	glog.Info("Get builds with project name")
 
@@ -82,35 +82,19 @@ func (c *ApiController) GetBuild() {
 	c.ServeJson()
 }
 
-/* Get active builds */
+// Get active builds.
 func (c *ApiController) GetActiveBuilds() {
 	glog.Info("Get active builds")
 
-	result := "{data: 1}"
+	result := "Not implemented"
 	c.Ctx.WriteString(result)
 }
 
-/* Get search builds */
+// Get search builds.
 func (c *ApiController) GetSearchBuilds() {
 	glog.Info("Get search builds")
 
-	result := "{data: 1}"
-	c.Ctx.WriteString(result)
-}
-
-/* Get build log by id */
-func (c *ApiController) GetBuildLog() {
-	glog.Info("Get build log")
-
-	result := "{data: 1}"
-	c.Ctx.WriteString(result)
-}
-
-/* Put build log with index */
-func (c *ApiController) PutBuildLogsIndex() {
-	glog.Info("Put build log part")
-
-	result := "{data: 1}"
+	result := "Not implemented"
 	c.Ctx.WriteString(result)
 }
 
@@ -150,7 +134,7 @@ func (c *ApiController) GetBuildLogsIndex() {
 
 }
 
-// Get all logs of the build
+// Get all logs of the build.
 func (c *ApiController) GetBuildLogsAll() {
 	glog.Info("Get all build logs")
 
@@ -166,7 +150,7 @@ func (c *ApiController) GetBuildLogsAll() {
 	c.ServeJson()
 }
 
-// New project
+// Add new project.
 func (c *ApiController) NewProject() {
 	glog.Info("New build record")
 
@@ -182,7 +166,7 @@ func (c *ApiController) NewProject() {
 	models.AddProject(project)
 }
 
-// Get all projects from database
+// Get all projects from database.
 func (c *ApiController) GetProjectsAll() {
 	glog.Info("Get all projects")
 
@@ -192,7 +176,7 @@ func (c *ApiController) GetProjectsAll() {
 	c.ServeJson()
 }
 
-// Get one project with project id
+// Get one project with project id.
 func (c *ApiController) GetProject() {
 	glog.Info("Get project")
 
@@ -204,7 +188,7 @@ func (c *ApiController) GetProject() {
 	c.ServeJson()
 }
 
-// Get all workers
+// Get all workers.
 func (c *ApiController) GetWorkersAll() {
 	glog.Info("Get all workers")
 
@@ -214,7 +198,7 @@ func (c *ApiController) GetWorkersAll() {
 	c.ServeJson()
 }
 
-// Get all worker with this status
+// Get all worker with this status.
 func (c *ApiController) GetWorkersAllStatus() {
 	glog.Info("Get all workers with status")
 
@@ -225,55 +209,7 @@ func (c *ApiController) GetWorkersAllStatus() {
 	c.ServeJson()
 }
 
-/* Create image */
-func (c *ApiController) CreateImage() {
-	glog.Info("Create image")
-
-	result := "{data: 1}"
-	c.Ctx.WriteString(result)
-}
-
-/* Get images */
-func (c *ApiController) GetImages() {
-	glog.Info("Get images")
-
-	result := "{data: 1}"
-	c.Ctx.WriteString(result)
-}
-
-/* Get image by id */
-func (c *ApiController) GetImage() {
-	glog.Info("Get image")
-
-	result := "{data: 1}"
-	c.Ctx.WriteString(result)
-}
-
-/* Get tasks */
-func (c *ApiController) GetTasks() {
-	glog.Info("Get tasks")
-
-	result := "{data: 1}"
-	c.Ctx.WriteString(result)
-}
-
-/* Finish task */
-func (c *ApiController) FinishTask() {
-	glog.Info("Finish task")
-
-	result := "{data: 1}"
-	c.Ctx.WriteString(result)
-}
-
-/* Get workers */
-func (c *ApiController) GetWorkers() {
-	glog.Info("Get workers")
-
-	result := "{data: 1}"
-	c.Ctx.WriteString(result)
-}
-
-// Process github push hook
+// Process github push hook.
 func (c *ApiController) TriggerGithubPushHook() {
 	glog.Info("Trigger github push hook")
 
@@ -430,7 +366,7 @@ func (c *ApiController) TriggerGithubPushHook() {
 
 }
 
-// Trigger gitlab push hook
+// Trigger gitlab push hook.
 func (c *ApiController) TriggerGitlabPushHook() {
 	glog.Info("Trigger gitlab push hook")
 
