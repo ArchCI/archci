@@ -1,8 +1,8 @@
 package controllers
 
 import (
-	"fmt"
 	"encoding/json"
+	"fmt"
 
 	log "github.com/Sirupsen/logrus"
 

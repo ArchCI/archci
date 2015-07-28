@@ -1,11 +1,11 @@
 package controllers
 
 import (
-	"fmt"
 	"encoding/json"
+	"fmt"
 
 	log "github.com/Sirupsen/logrus"
-	
+
 	"github.com/ArchCI/archci/githubutil"
 	"github.com/ArchCI/archci/gitlabutil"
 	"github.com/ArchCI/archci/models"

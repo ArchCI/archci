@@ -1,8 +1,8 @@
 package models
 
 import (
-	"time"
 	"fmt"
+	"time"
 
 	"github.com/astaxie/beego/orm"
 	_ "github.com/go-sql-driver/mysql"

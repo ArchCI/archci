@@ -32,8 +32,8 @@ func NewEntry(logger *Logger) *Entry {
 	return &Entry{
 		Logger: logger,
 		// Default is three fields, give a little extra room
-		Data: 	make(Fields, 5),
-		Level:	logger.Level,
+		Data:  make(Fields, 5),
+		Level: logger.Level,
 	}
 }
 

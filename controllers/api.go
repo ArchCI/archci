@@ -3,8 +3,8 @@ package controllers
 import (
 	_ "github.com/lib/pq"
 
-	"github.com/astaxie/beego"
 	log "github.com/Sirupsen/logrus"
+	"github.com/astaxie/beego"
 )
 
 // ApiController is the custom controller to provide APIs.

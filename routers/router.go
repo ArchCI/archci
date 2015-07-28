@@ -41,4 +41,8 @@ func init() {
 	// Hooks api.
 	beego.Router("/v1/hook/github/push", &controllers.ApiController{}, "post:TriggerGithubPushHook")
 	beego.Router("/v1/hook/gitlab/push", &controllers.ApiController{}, "post:TriggerGitlabPushHook")
+
+	// Badge api.
+	beego.Router("/v1/badge/:projectId", &controllers.ApiController{}, "get:GetProjectBadge")
+	beego.Router("/v1/badge/:projectId/markdown", &controllers.ApiController{}, "get:GetProjectBadgeMarkdown")
 }
