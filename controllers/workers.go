@@ -1,16 +1,14 @@
 package controllers
 
 import (
-	_ "github.com/lib/pq"
-
-	"github.com/golang/glog"
+	log "github.com/Sirupsen/logrus"
 
 	"github.com/ArchCI/archci/models"
 )
 
 // Get all workers.
 func (c *ApiController) GetWorkersAll() {
-	glog.Info("Get all workers")
+	log.Info("Get all workers")
 
 	workers := models.GetAllWorkers()
 
@@ -20,7 +18,7 @@ func (c *ApiController) GetWorkersAll() {
 
 // Get all worker with this status.
 func (c *ApiController) GetWorkersAllStatus() {
-	glog.Info("Get all workers with status")
+	log.Info("Get all workers with status")
 
 	status, _ := c.GetInt(":status")
 	workers := models.GetAllWorkersWithStatus(status)

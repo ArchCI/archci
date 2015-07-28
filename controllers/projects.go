@@ -2,17 +2,16 @@ package controllers
 
 import (
 	"fmt"
-	_ "github.com/lib/pq"
-
-	"github.com/golang/glog"
-
 	"encoding/json"
+
+	log "github.com/Sirupsen/logrus"
+
 	"github.com/ArchCI/archci/models"
 )
 
 // Add new project.
 func (c *ApiController) NewProject() {
-	glog.Info("New build record")
+	log.Info("New build record")
 
 	project := models.Project{}
 
@@ -28,7 +27,7 @@ func (c *ApiController) NewProject() {
 
 // Get all projects from database.
 func (c *ApiController) GetProjectsAll() {
-	glog.Info("Get all projects")
+	log.Info("Get all projects")
 
 	projects := models.GetAllProjects()
 
@@ -38,7 +37,7 @@ func (c *ApiController) GetProjectsAll() {
 
 // Get one project with project id.
 func (c *ApiController) GetProject() {
-	glog.Info("Get project")
+	log.Info("Get project")
 
 	projectId, _ := c.GetInt64(":projectId")
 

@@ -2,11 +2,10 @@ package controllers
 
 import (
 	"fmt"
-	_ "github.com/lib/pq"
-
-	"github.com/golang/glog"
-
 	"encoding/json"
+
+	log "github.com/Sirupsen/logrus"
+	
 	"github.com/ArchCI/archci/githubutil"
 	"github.com/ArchCI/archci/gitlabutil"
 	"github.com/ArchCI/archci/models"
@@ -14,7 +13,7 @@ import (
 
 // Process github push hook.
 func (c *ApiController) TriggerGithubPushHook() {
-	glog.Info("Trigger github push hook")
+	log.Info("Trigger github push hook")
 
 	/*
 		{
@@ -171,7 +170,7 @@ func (c *ApiController) TriggerGithubPushHook() {
 
 // Trigger gitlab push hook.
 func (c *ApiController) TriggerGitlabPushHook() {
-	glog.Info("Trigger gitlab push hook")
+	log.Info("Trigger gitlab push hook")
 
 	/*
 		{

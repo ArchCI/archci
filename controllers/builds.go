@@ -2,10 +2,10 @@ package controllers
 
 import (
 	"fmt"
-
-	"github.com/golang/glog"
-
 	"encoding/json"
+
+	log "github.com/Sirupsen/logrus"
+
 	"github.com/ArchCI/archci/models"
 	"github.com/ArchCI/archci/redisutil"
 )
@@ -18,7 +18,7 @@ type GetBuildLogsIndexResponse struct {
 
 // Newbuild processes POST data to build record and add it in database.
 func (c *ApiController) NewBuild() {
-	glog.Info("New build record")
+	log.Info("New build record")
 
 	project := models.Project{}
 
@@ -34,7 +34,7 @@ func (c *ApiController) NewBuild() {
 
 // GetBuildsAll read all builds from database.
 func (c *ApiController) GetBuildsAll() {
-	glog.Info("Get all builds")
+	log.Info("Get all builds")
 
 	builds := models.GetAllBuilds()
 
@@ -44,7 +44,7 @@ func (c *ApiController) GetBuildsAll() {
 
 // GetBuildsWithProjectName gets project name in url and return the project object.
 func (c *ApiController) GetBuildsWithProjectName() {
-	glog.Info("Get builds with project name")
+	log.Info("Get builds with project name")
 
 	projectName := c.GetString(":projectName")
 
@@ -56,7 +56,7 @@ func (c *ApiController) GetBuildsWithProjectName() {
 
 // GetBuild gets the build id and return the build object.
 func (c *ApiController) GetBuild() {
-	glog.Info("Get build")
+	log.Info("Get build")
 
 	buildId, _ := c.GetInt64(":buildId")
 
@@ -69,7 +69,7 @@ func (c *ApiController) GetBuild() {
 // Get active builds.
 func (c *ApiController) GetActiveBuilds() {
 	// TODO(tobe): this is not implemented because nobody uses it yet.
-	glog.Info("Get active builds")
+	log.Info("Get active builds")
 
 	result := "Not implemented"
 	c.Ctx.WriteString(result)
@@ -77,7 +77,7 @@ func (c *ApiController) GetActiveBuilds() {
 
 // Get search builds.
 func (c *ApiController) GetSearchBuilds() {
-	glog.Info("Get search builds")
+	log.Info("Get search builds")
 
 	result := "Not implemented"
 	c.Ctx.WriteString(result)
@@ -85,7 +85,7 @@ func (c *ApiController) GetSearchBuilds() {
 
 /* Get build log with index */
 func (c *ApiController) GetBuildLogsIndex() {
-	glog.Info("Get build log with index")
+	log.Info("Get build log with index")
 
 	buildId := c.GetString(":buildId")
 	index, _ := c.GetInt(":index")
@@ -121,7 +121,7 @@ func (c *ApiController) GetBuildLogsIndex() {
 
 // Get all logs of the build.
 func (c *ApiController) GetBuildLogsAll() {
-	glog.Info("Get all build logs")
+	log.Info("Get all build logs")
 
 	//buildId := c.GetString(":buildId")
 	//field := 0
