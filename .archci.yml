@@ -1,0 +1,21 @@
+image: golang:1.4
+
+env:
+  - GOPATH=/root/go
+  - PATH=$PATH:$GOPATH/bin
+
+script:
+  - cd ./tests/
+  - go test
+
+email:
+  success:
+    - tobeg3oogle@gmail.com
+  failure:
+    - tobeg3oogle@gmail.com
+
+webhook:
+  success:
+    - http://127.0.0.1:10010/v1/hook/gitlab/push
+  failure:
+    - http://127.0.0.1:10010/v1/hook/gitlab/push
