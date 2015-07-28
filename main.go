@@ -20,6 +20,7 @@ const (
 	MYSQL_DRIVER = "mysql"
 )
 
+// Init will initialize database to create tables automatically.
 func init() {
 	// Registry archci database models.
 	models.RegisterModels()
@@ -28,7 +29,7 @@ func init() {
 	server := ""
 	username := "root"
 	password := "root"
-	database := "archci"
+	database := "mysql"
 
 	if os.Getenv(ENV_MYSQL_SERVER) != "" {
 		server = os.Getenv(ENV_MYSQL_SERVER)
@@ -43,7 +44,7 @@ func init() {
 		database = os.Getenv(ENV_MYSQL_DATABASE)
 	}
 
-	// "root:root@/archci?charset=utf8"
+	// The datasource looks like "root:root@/archci?charset=utf8".
 	DATASOURCE := username + ":" + password + "@" + server + "/" + database + "?charset=utf8"
 	fmt.Println("Connect to database with " + DATASOURCE)
 
@@ -52,7 +53,7 @@ func init() {
 	orm.RunSyncdb("default", false, true)
 }
 
+// Main is the entry to start beego application.
 func main() {
-
 	beego.Run()
 }

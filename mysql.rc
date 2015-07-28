@@ -1,4 +1,4 @@
 export MYSQL_SERVER=""
 export MYSQL_USERNAME="root"
 export MYSQL_PASSWORD="root"
-export MYSQL_DATABASE="archci"
+export MYSQL_DATABASE="mysql"

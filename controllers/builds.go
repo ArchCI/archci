@@ -2,7 +2,6 @@ package controllers
 
 import (
 	"fmt"
-	_ "github.com/lib/pq"
 
 	"github.com/golang/glog"
 

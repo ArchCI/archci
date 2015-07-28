@@ -22,16 +22,36 @@ Docker: [docker-distribution](https://github.com/ArchCI)
 ## Usage
 
 ```
-docker run -d --net=host archci/archci
+sudo docker run -d --net=host archci/archci
 ```
 
-Please make sure MySQL and redis start and go to <127.0.0.1:10010>.
+* `MYSQL_SERVER` is optional to set address of MySQL(DEFAULT: "")
+* `MYSQL_USERNAME` is optional to set MySQL username(DEFAULT: root)
+* `MYSQL_PASSWORD` is optional to set user's password(DEFAULT: root)
+* `MYSQL_DATABASE` is optional to set MySQL database(DEFAULT: mysql)
+* `REDIS_SERVER` is optional to set address of redis(DEFAULT: 127.0.0.1:6379)
 
 ## Screenshots
 
 ![](./archci_builds_page.png)
 
 ![](./archci_projects_page.png)
+
+## Github Integration
+
+You can add this in your repo's webhook.
+
+```
+http://121.201.52.197:10010/v1/hook/github/push
+```
+
+## Gitlab Integration
+
+You can add this in your repo's webhook.
+
+```
+http://121.201.52.197:10010/v1/hook/gitlab/push
+```
 
 ## Development
 
