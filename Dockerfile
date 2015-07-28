@@ -7,7 +7,7 @@ WORKDIR /go/src/github.com/ArchCI/archci
 RUN go get
 RUN go build
 
-EXPOSE 80
+EXPOSE 10010
 
 CMD ./archci
 
