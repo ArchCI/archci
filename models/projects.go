@@ -1,10 +1,10 @@
 package models
 
 import (
+	"fmt"
+
 	"github.com/astaxie/beego/orm"
 	_ "github.com/go-sql-driver/mysql"
-
-	"fmt"
 )
 
 const (
@@ -14,7 +14,9 @@ const (
 	PROJECT_STATUS_FAIL      = 3
 )
 
-// More setting in http://beego.me/docs/mvc/model/models.md
+// TODO(tobe): add more restriction in http://beego.me/docs/mvc/model/models.md
+
+// Project contains all the information of project.
 type Project struct {
 	Id          int64  `orm:"pk;auto"`
 	UserName    string `orm:"size(1024);null"`
@@ -23,7 +25,7 @@ type Project struct {
 	Status      int    `orm:"null"`
 }
 
-// For advanced usage in http://beego.me/docs/mvc/model/query.md#all
+// GetAllProjects return all projects from database.
 func GetAllProjects() []*Project {
 	o := orm.NewOrm()
 
@@ -33,6 +35,7 @@ func GetAllProjects() []*Project {
 	return projects
 }
 
+// GetProjectWithId takes id to return the project.
 func GetProjectWithId(projectId int64) Project {
 	o := orm.NewOrm()
 
@@ -42,7 +45,7 @@ func GetProjectWithId(projectId int64) Project {
 	return project
 }
 
-// Read or create the project in database
+// ReadOrCreateProject tries to get the project and create it if it doesn't exist.
 func ReadOrCreateProject(userName string, projectName string, repoUrl string) (int64, error) {
 	o := orm.NewOrm()
 
@@ -66,15 +69,7 @@ func ReadOrCreateProject(userName string, projectName string, repoUrl string) (i
 	}
 }
 
-// For more usage in http://beego.me/docs/mvc/model/overview.md
-func AddProjectWithNameUrl(projectName string, repoUrl string) error {
-	o := orm.NewOrm()
-
-	project := Project{ProjectName: projectName, RepoUrl: repoUrl}
-	_, err := o.Insert(&project)
-	return err
-}
-
+// AddProject adds the project in database.
 func AddProject(project Project) error {
 	o := orm.NewOrm()
 

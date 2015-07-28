@@ -1,11 +1,11 @@
 package models
 
 import (
+	"time"
+	"fmt"
+
 	"github.com/astaxie/beego/orm"
 	_ "github.com/go-sql-driver/mysql"
-	"time"
-
-	"fmt"
 
 	"github.com/ArchCI/archci/githubutil"
 	"github.com/ArchCI/archci/gitlabutil"
@@ -19,6 +19,7 @@ const (
 	BUILD_STATUS_CANCELED  = 4
 )
 
+// Build contains all the information of the build task.
 type Build struct {
 	Id          int64 `orm:"pk;auto"`
 	ProjectId   int64
@@ -35,6 +36,7 @@ type Build struct {
 	Status      int       `orm:"null"`
 }
 
+// GetAllBuilds return all builds from database.
 func GetAllBuilds() []*Build {
 	o := orm.NewOrm()
 
@@ -45,6 +47,7 @@ func GetAllBuilds() []*Build {
 	return builds
 }
 
+// GetBuildsWithProjectName takes project name and return its builds.
 func GetBuildsWithProjectName(projectName string) []*Build {
 	o := orm.NewOrm()
 
@@ -54,6 +57,7 @@ func GetBuildsWithProjectName(projectName string) []*Build {
 	return builds
 }
 
+// GetBuildWithId takes build is and return the build.
 func GetBuildWithId(buildId int64) Build {
 	o := orm.NewOrm()
 
@@ -63,6 +67,7 @@ func GetBuildWithId(buildId int64) Build {
 	return build
 }
 
+// AddBuildWithProject take project object to create build.
 func AddBuildWithProject(project Project) error {
 	o := orm.NewOrm()
 
@@ -72,6 +77,7 @@ func AddBuildWithProject(project Project) error {
 	return err
 }
 
+// AddGithubBuild takes github webhook to create build.
 func AddGithubBuild(projectId int64, data githubutil.GithubPushHook) error {
 	o := orm.NewOrm()
 
@@ -95,6 +101,7 @@ func AddGithubBuild(projectId int64, data githubutil.GithubPushHook) error {
 	return err
 }
 
+// AddGitlabBuild takes gitlab webhook to create build.
 func AddGitlabBuild(projectId int64, data gitlabutil.GitlabPushHook) error {
 	o := orm.NewOrm()
 
@@ -121,6 +128,7 @@ func AddGitlabBuild(projectId int64, data gitlabutil.GitlabPushHook) error {
 	return err
 }
 
+// AddBuild takes basic information to create build.
 func AddBuild(projectName string, branch string, commit string, commitTime time.Time, committer string) error {
 	o := orm.NewOrm()
 

@@ -66,7 +66,7 @@ func (c *ApiController) GetBuild() {
 	c.ServeJson()
 }
 
-// Get active builds.
+// GetActiveBuilds get build data from database.
 func (c *ApiController) GetActiveBuilds() {
 	// TODO(tobe): this is not implemented because nobody uses it yet.
 	log.Info("Get active builds")
@@ -75,7 +75,7 @@ func (c *ApiController) GetActiveBuilds() {
 	c.Ctx.WriteString(result)
 }
 
-// Get search builds.
+// GetSearchBuilds get search string and return related builds.
 func (c *ApiController) GetSearchBuilds() {
 	log.Info("Get search builds")
 
@@ -83,7 +83,7 @@ func (c *ApiController) GetSearchBuilds() {
 	c.Ctx.WriteString(result)
 }
 
-/* Get build log with index */
+// GetBuildLogsIndex return the single build log with the index.
 func (c *ApiController) GetBuildLogsIndex() {
 	log.Info("Get build log with index")
 
@@ -106,9 +106,8 @@ func (c *ApiController) GetBuildLogsIndex() {
 		fmt.Println("index != current")
 	}
 
-	// Throw error if index is larger than current
-
-	// Handle when get the index is more than current but it's not total
+	// TODO(tobe): throw error if index is larger than current
+	// TODO(tobe): handle when get the index is more than current but it's not total
 
 	response := &GetBuildLogsIndexResponse{
 		Log:  log,
@@ -119,7 +118,7 @@ func (c *ApiController) GetBuildLogsIndex() {
 
 }
 
-// Get all logs of the build.
+// GetBuildLogsAll return all logs of the build.
 func (c *ApiController) GetBuildLogsAll() {
 	log.Info("Get all build logs")
 

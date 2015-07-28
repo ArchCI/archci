@@ -6,7 +6,7 @@ import (
 	"github.com/ArchCI/archci/models"
 )
 
-// Get all workers.
+// GetWorkerAll returns all workers from database.
 func (c *ApiController) GetWorkersAll() {
 	log.Info("Get all workers")
 
@@ -16,7 +16,7 @@ func (c *ApiController) GetWorkersAll() {
 	c.ServeJson()
 }
 
-// Get all worker with this status.
+// GetWorkersAllStatus take the parameter of status and return the workers.
 func (c *ApiController) GetWorkersAllStatus() {
 	log.Info("Get all workers with status")
 

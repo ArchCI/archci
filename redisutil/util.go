@@ -15,6 +15,7 @@ const (
 	HGET_ALL     = "HGETALL"
 )
 
+// GetRedisServer reads the environment variable to return the address of redis.
 func GetRedisServer() string {
 	if os.Getenv(ENV_REDIS_SERVER) != "" {
 		return os.Getenv(ENV_REDIS_SERVER)
@@ -23,6 +24,7 @@ func GetRedisServer() string {
 	}
 }
 
+// GetString performs the get command to return string.
 func GetString(key string) string {
 	c, err := redis.Dial("tcp", GetRedisServer())
 	if err != nil {
@@ -38,6 +40,7 @@ func GetString(key string) string {
 	return value
 }
 
+// HgetString performs the hget command to return string.
 func HgetString(key string, field int) string {
 	c, err := redis.Dial("tcp", GetRedisServer())
 	if err != nil {
@@ -53,6 +56,7 @@ func HgetString(key string, field int) string {
 	return value
 }
 
+// HgetInt performs the hget command to return int.
 func HgetInt(key string, field string) int {
 	c, err := redis.Dial("tcp", GetRedisServer())
 	if err != nil {
@@ -68,6 +72,7 @@ func HgetInt(key string, field string) int {
 	return value
 }
 
+// HgetBool performs hget command to return boolean.
 func HgetBool(key string, field string) bool {
 	c, err := redis.Dial("tcp", GetRedisServer())
 	if err != nil {

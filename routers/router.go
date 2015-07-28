@@ -5,6 +5,7 @@ import (
 	"github.com/astaxie/beego"
 )
 
+// Init registries all the APIs when startup.
 func init() {
 	// ArchCI web pages.
 	beego.Router("/", &controllers.MainController{})

@@ -1,11 +1,11 @@
 package models
 
 import (
-	"github.com/astaxie/beego/orm"
-	_ "github.com/go-sql-driver/mysql"
-
 	"fmt"
 	"time"
+
+	"github.com/astaxie/beego/orm"
+	_ "github.com/go-sql-driver/mysql"
 )
 
 const (
@@ -14,6 +14,7 @@ const (
 	WORKER_STATUS_DIE  = 2
 )
 
+// Worker contains all the information of the worker.
 type Worker struct {
 	Id         int64  `orm:"pk;auto"`
 	Ip         string `orm:"size(1024)"`
@@ -21,6 +22,7 @@ type Worker struct {
 	Status     int
 }
 
+// GetAllWorkers return all the workers from database.
 func GetAllWorkers() []*Worker {
 	o := orm.NewOrm()
 
@@ -30,6 +32,7 @@ func GetAllWorkers() []*Worker {
 	return workers
 }
 
+// GetAllWorkersWithStatus takes the status and return the workers.
 func GetAllWorkersWithStatus(status int) []*Worker {
 	o := orm.NewOrm()
 

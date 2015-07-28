@@ -11,7 +11,7 @@ import (
 	"github.com/ArchCI/archci/models"
 )
 
-// Process github push hook.
+// TriggerGithubPushHook processes github push hook to trigger build.
 func (c *ApiController) TriggerGithubPushHook() {
 	log.Info("Trigger github push hook")
 
@@ -168,7 +168,7 @@ func (c *ApiController) TriggerGithubPushHook() {
 
 }
 
-// Trigger gitlab push hook.
+// TriggerGitlabPushHook processes gitlab push hook to trigger build.
 func (c *ApiController) TriggerGitlabPushHook() {
 	log.Info("Trigger gitlab push hook")
 
