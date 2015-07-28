@@ -14,7 +14,6 @@ const (
 	WORKER_STATUS_DIE  = 2
 )
 
-
 type Worker struct {
 	Id         int64  `orm:"pk;auto"`
 	Ip         string `orm:"size(1024)"`

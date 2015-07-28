@@ -2,18 +2,29 @@ package redisutil
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/garyburd/redigo/redis"
 )
 
 const (
+	ENV_REDIS_SERVER = "REDIS_SERVER"
+
 	GET_COMMAND  = "SET"
 	HGET_COMMAND = "HGET"
 	HGET_ALL     = "HGETALL"
 )
 
+func GetRedisServer() string {
+	if os.Getenv(ENV_REDIS_SERVER) != "" {
+		return os.Getenv(ENV_REDIS_SERVER)
+	} else {
+		return "127.0.0.1:6379"
+	}
+}
+
 func GetString(key string) string {
-	c, err := redis.Dial("tcp", ":6379")
+	c, err := redis.Dial("tcp", GetRedisServer())
 	if err != nil {
 		panic(err)
 	}
@@ -28,7 +39,7 @@ func GetString(key string) string {
 }
 
 func HgetString(key string, field int) string {
-	c, err := redis.Dial("tcp", ":6379")
+	c, err := redis.Dial("tcp", GetRedisServer())
 	if err != nil {
 		panic(err)
 	}
@@ -43,7 +54,7 @@ func HgetString(key string, field int) string {
 }
 
 func HgetInt(key string, field string) int {
-	c, err := redis.Dial("tcp", ":6379")
+	c, err := redis.Dial("tcp", GetRedisServer())
 	if err != nil {
 		panic(err)
 	}
@@ -58,7 +69,7 @@ func HgetInt(key string, field string) int {
 }
 
 func HgetBool(key string, field string) bool {
-	c, err := redis.Dial("tcp", ":6379")
+	c, err := redis.Dial("tcp", GetRedisServer())
 	if err != nil {
 		panic(err)
 	}

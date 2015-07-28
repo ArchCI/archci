@@ -5,7 +5,6 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
-
 func RegisterModels() {
 	orm.RegisterModel(new(Project), new(Build), new(Worker))
 }
