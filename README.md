@@ -1,4 +1,4 @@
-# ArchCI
+# ArchCI [![GoDoc](https://godoc.org/github.com/ArchCI/archci?status.svg)](https://godoc.org/github.com/ArchCI/archci) [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ArchCI/archci?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 ## Introduction
 

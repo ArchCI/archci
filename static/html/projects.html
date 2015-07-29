@@ -51,11 +51,18 @@
 
                     <form role="form" >
                         <div class="form-group">
-                            Image Url: <input class="form-control" type="text" placeholder="ArchCI" ng-model="projectBadgeUrl">
+                            <h4>Badge:</h4>
+                            <img src="{{requestProjectBadgeUrl}}">
                         </div>
 
                         <div class="form-group">
-                            Markdown Url: <input class="form-control" type="text" placeholder="ArchCI" ng-model="projectBadgeMarkdown">
+                            <h4>Image Url:</h4>
+                            <input class="form-control" type="text" placeholder="ArchCI" ng-model="projectBadgeUrl">
+                        </div>
+
+                        <div class="form-group">
+                            <h4>Markdown Url:</h4>
+                            <input class="form-control" type="text" placeholder="ArchCI" ng-model="projectBadgeMarkdown">
                         </div>
                     </form>
 
