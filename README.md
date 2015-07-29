@@ -33,9 +33,7 @@ sudo docker run -d --net=host archci/archci
 
 ## Screenshots
 
-![](./archci_builds_page.png)
-
-![](./archci_projects_page.png)
+![](./screenshot.png)
 
 ## Github Integration
 
