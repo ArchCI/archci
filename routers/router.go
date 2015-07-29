@@ -44,5 +44,6 @@ func init() {
 
 	// Badge api.
 	beego.Router("/v1/badge/:projectId", &controllers.ApiController{}, "get:GetProjectBadge")
+	beego.Router("/v1/badge/:projectId/url", &controllers.ApiController{}, "get:GetProjectBadgeUrl")
 	beego.Router("/v1/badge/:projectId/markdown", &controllers.ApiController{}, "get:GetProjectBadgeMarkdown")
 }

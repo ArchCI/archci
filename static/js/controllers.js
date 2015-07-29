@@ -164,8 +164,8 @@ archciControllers.controller('ProjectsController', ['$scope', '$routeParams', '$
     });
   };
 
+  //Sleep to get the data of current project
   setTimeout(function(){
-    //Sleep to get the data of current project
 
     /*
     [
@@ -187,9 +187,21 @@ archciControllers.controller('ProjectsController', ['$scope', '$routeParams', '$
       $scope.builds = data
     });
 
+    // Get badge url
+    $scope.requestProjectBadgeUrl = "/v1/badge/" + $scope.project.Id
+
+    $http.get("/v1/badge/" + $scope.project.Id + "/url").success(function(data) {
+      $scope.projectBadgeUrl = data
+    });
+
+    $http.get("/v1/badge/" + $scope.project.Id + "/markdown").success(function(data) {
+      $scope.projectBadgeMarkdown = data
+    });
+
   }, 1000);
 
-  // Change the current build
+
+  // Change the current project
   $scope.changeProject = function(project) {
     $scope.project = project;
 
@@ -197,6 +209,7 @@ archciControllers.controller('ProjectsController', ['$scope', '$routeParams', '$
       $scope.builds = data
     });
 
+    $scope.projectBadgeUrl = "/v1/badge/" + $scope.project.Id
   }
 
   $scope.addProject = function(userName, projectName, repoUrl) {

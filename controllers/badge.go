@@ -36,6 +36,18 @@ func (c *ApiController) GetProjectBadge() {
 	c.Ctx.ResponseWriter.Write(badge)
 }
 
+// GetProjectBadgeUrl returns the url of the status badge.
+func (c *ApiController) GetProjectBadgeUrl() {
+	log.Debug("Get project badge url")
+
+	// TODO(tobe): use the address of server instead of 127.0.0.1
+	// The link should look like "http://127.0.0.1:10010/v1/badge/1)"
+	projectId, _ := c.GetInt64(":projectId")
+	link := fmt.Sprintf("http://127.0.0.1:10010/v1/badge/%d", projectId)
+
+	c.Ctx.WriteString(link)
+}
+
 // GetProjectBadgeMarkdown returns the markdown link of the status badge.
 func (c *ApiController) GetProjectBadgeMarkdown() {
 	log.Debug("Get project badge with markdown link")
