@@ -15,6 +15,9 @@ func init() {
 	beego.Router("/projects/:projectId", &controllers.MainController{})
 	beego.Router("/workers", &controllers.MainController{})
 
+	// Login api.
+	beego.Router("/v1/login/github", &controllers.ApiController{}, "get:LoginGithub")
+
 	// Account api.
 	beego.Router("/v1/account", &controllers.ApiController{}, "post:CreateAccount")
 

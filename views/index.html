@@ -40,12 +40,12 @@
 <!-- Header with a navigation bar -->
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
+
         <!-- Home page button -->
         <div class="navbar-header">
             <a class="navbar-brand animate-nav" href="/">{{'archci'|translate}} <span class="label label-success">Beta</span></a>
         </div>
 
-        <!-- Containers page, images page and configuration page buttons -->
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li class="animate-nav"><a href="/builds">{{'builds'|translate}}</a></li>
@@ -53,8 +53,15 @@
                 <li class="animate-nav"><a href="/workers">{{'workers'|translate}}</a></li>
             </ul>
 
-            <!-- A more button to change i18n languages and email me -->
+
             <ul class="nav navbar-nav navbar-right">
+
+                <!--
+                <li>
+                    <a href="/v1/login/github" target="_self">Github Login</a>
+                </li>
+                -->
+
                 <li class="dropdown">
                     <a class="dropdown-toggle animate-nav" data-toggle="dropdown" href="">{{'theme'|translate}} <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
@@ -77,6 +84,7 @@
                         <li class="animate-nav"><a href="" ng-click="changeTheme('yeti')">Yeti</a></li>
                     </ul>
                 </li>
+
                 <li class="dropdown">
                     <a class="dropdown-toggle animate-nav" data-toggle="dropdown" href="">{{'more'|translate}} <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">

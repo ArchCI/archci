@@ -1,9 +1,9 @@
 package controllers
 
 import (
-	log "github.com/Sirupsen/logrus"
-	"github.com/ArchCI/archci/models"
 	"fmt"
+	"github.com/ArchCI/archci/models"
+	log "github.com/Sirupsen/logrus"
 )
 
 // GetProjectBadge takes project id and return the badge image of its status.
