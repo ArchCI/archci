@@ -37,6 +37,9 @@ archci.config(['$locationProvider', '$routeProvider',
       when('/workers', {
         templateUrl: '/static/html/workers.html',
         //controller: 'WorkersController'
+      }).
+      when('/account', {
+        templateUrl: '/static/html/account.html',
       });
       /* No default page for angular so that beego can process API request
       otherwise({

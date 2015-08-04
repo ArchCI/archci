@@ -14,12 +14,11 @@ func init() {
 	beego.Router("/projects", &controllers.MainController{})
 	beego.Router("/projects/:projectId", &controllers.MainController{})
 	beego.Router("/workers", &controllers.MainController{})
+	beego.Router("/account", &controllers.MainController{})
 
 	// Login api.
 	beego.Router("/v1/login/github", &controllers.ApiController{}, "get:LoginGithub")
-
-	// Account api.
-	beego.Router("/v1/account", &controllers.ApiController{}, "post:CreateAccount")
+	beego.Router("/v1/login/github/callback", &controllers.ApiController{}, "get:LoginGithubCallback")
 
 	// Builds api.
 	beego.Router("/v1/builds/new", &controllers.ApiController{}, "post:NewBuild")

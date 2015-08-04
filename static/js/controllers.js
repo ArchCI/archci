@@ -262,6 +262,7 @@ archciControllers.controller('ProjectsController', ['$scope', '$routeParams', '$
 
 }]);
 
+
 archciControllers.controller('WorkersController', ['$scope', '$routeParams', '$http',
   function($scope, $routeParams, $http) {
 
@@ -294,3 +295,16 @@ archciControllers.controller('WorkersController', ['$scope', '$routeParams', '$h
     $scope.dieWorkers = data;
   });
 }]);
+
+
+archciControllers.controller('AccountController', ['$scope', '$routeParams', '$http',
+  function($scope, $routeParams, $http) {
+
+  $http.get("/v1/workers/all/status/2").success(function(data) {
+    $scope.dieWorkers = data;
+  });
+
+  $scope.name = "tobe";
+
+}]);
+

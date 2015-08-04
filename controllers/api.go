@@ -14,7 +14,7 @@ import (
 
 	"golang.org/x/oauth2"
 
-//"github.com/google/go-github/github"
+	//"github.com/google/go-github/github"
 
 )
 
@@ -29,17 +29,9 @@ const (
 	redirectUrl        = ""
 )
 
-// CreateAccount is used to create an new account.
-func (c *ApiController) CreateAccount() {
-	// TODO(tobe): this is not implemented until we integrate with Github or Gitlab.
-	log.Info("Creat accout")
-
-	result := "Not implemented"
-	c.Ctx.WriteString(result)
-}
 
 func (c *ApiController) LoginGithub() {
-	fmt.Println("Start to login github")
+	log.Debug("Start to login github")
 
 	oauthCfg := &oauth2.Config{
 		ClientID:     "893d4b7aaab4c8c7bf52",
@@ -62,32 +54,56 @@ func (c *ApiController) LoginGithub() {
 	http.Redirect(c.Ctx.ResponseWriter, c.Ctx.Request, url, 302)
 }
 
-/*
-func CallbackHandler(w http.ResponseWriter, r *http.Request) {
 
+func (c *ApiController) LoginGithubCallback() {
+	fmt.Println("Start login github callback")
+
+	r := c.Ctx.Request
+
+	oauthCfg := &oauth2.Config{
+		ClientID:     "893d4b7aaab4c8c7bf52",
+		ClientSecret: "5df2d172df4e497f3eb66ef3a1ff3b6eb719a949",
+		Endpoint: oauth2.Endpoint{
+			AuthURL:  githubAuthorizeUrl,
+			TokenURL: githubTokenUrl,
+		},
+		RedirectURL: redirectUrl,
+		Scopes:      []string{"repo"},
+	}
+
+	/*
 	if r.URL.Query().Get("state") != session.Values["state"] {
-		fmt.Fprintln(w, "no state match; possible csrf OR cookies not enabled")
+		fmt.Println("no state match; possible csrf OR cookies not enabled")
 		return
 	}
+	*/
 
 	tkn, err := oauthCfg.Exchange(oauth2.NoContext, r.URL.Query().Get("code"))
 	if err != nil {
-		fmt.Fprintln(w, "there was an issue getting your token")
+		fmt.Println("there was an issue getting your token")
 		return
 	}
 
 	if !tkn.Valid() {
-		fmt.Fprintln(w, "retreived invalid token")
+		fmt.Println("retreived invalid token")
 		return
 	}
 
+	/*
 	client := github.NewClient(oauthCfg.Client(oauth2.NoContext, tkn))
+	*/
 
+	/*
 	user, _, err := client.Users.Get("")
 	if err != nil {
-		fmt.Println(w, "error getting name")
+		fmt.Println("error getting name")
 		return
 	}
+	*/
+
+	url := "/account"
+
+	http.Redirect(c.Ctx.ResponseWriter, c.Ctx.Request, url, 302)
 
 }
-*/
+
