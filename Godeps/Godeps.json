@@ -1,6 +1,6 @@
 {
 	"ImportPath": "github.com/ArchCI/archci",
-	"GoVersion": "go1.3.3",
+	"GoVersion": "go1.4",
 	"Deps": [
 		{
 			"ImportPath": "github.com/Sirupsen/logrus",
@@ -26,8 +26,12 @@
 			"Rev": "66b7d5c4956096efd4c945494d64ad73f1d9ec39"
 		},
 		{
-			"ImportPath": "github.com/lib/pq",
-			"Rev": "7175accbed18058468c07811f76440d6e8d7cf19"
+			"ImportPath": "golang.org/x/net/context",
+			"Rev": "b963d2882af875a5309cdc4b00f93a638f3646d2"
+		},
+		{
+			"ImportPath": "golang.org/x/oauth2",
+			"Rev": "8914e5017ca260f2a3a1575b1e6868874050d95e"
 		}
 	]
 }
