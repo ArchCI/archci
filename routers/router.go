@@ -39,6 +39,10 @@ func init() {
 	beego.Router("/v1/workers/all", &controllers.ApiController{}, "get:GetWorkersAll")
 	// TODO(tobe): this is not really RESTful
 	beego.Router("/v1/workers/all/status/:status", &controllers.ApiController{}, "get:GetWorkersAllStatus")
+	
+	// account api.
+	beego.Router("/v1/account", &controllers.ApiController{}, "get:GetAccount")
+	beego.Router("/v1/account/projects", &controllers.ApiController{}, "get:GetAccountProjects")
 
 	// Hooks api.
 	beego.Router("/v1/hook/github/push", &controllers.ApiController{}, "post:TriggerGithubPushHook")
