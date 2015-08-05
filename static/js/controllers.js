@@ -300,11 +300,17 @@ archciControllers.controller('WorkersController', ['$scope', '$routeParams', '$h
 archciControllers.controller('AccountController', ['$scope', '$routeParams', '$http',
   function($scope, $routeParams, $http) {
 
-  $http.get("/v1/workers/all/status/2").success(function(data) {
-    $scope.dieWorkers = data;
+  $http.get("/v1/account/info").success(function(data) {
+    $scope.account = data;
   });
 
-  $scope.name = "tobe";
+  $http.get("/v1/account/token").success(function(data) {
+    $scope.token = data;
+  });
+
+  $http.get("/v1/account/projects").success(function(data) {
+    $scope.projects = data;
+  });
 
 }]);
 
