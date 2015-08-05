@@ -308,6 +308,10 @@ archciControllers.controller('AccountController', ['$scope', '$routeParams', '$h
     $scope.token = data;
   });
 
+  $http.get("/v1/account/organizations").success(function(data) {
+    $scope.organizations = data;
+  });
+
   $http.get("/v1/account/projects").success(function(data) {
     $scope.projects = data;
   });

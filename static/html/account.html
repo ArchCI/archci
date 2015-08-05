@@ -5,21 +5,38 @@
 
         <div class="row">
 
-            <div class="col-md-6">
+            <div class="col-md-4">
 
                 <button><a href="/v1/login/github" target="_self">Login Github</a></button>
 
-                <h3>Name: <a href="{{account.html_url}}" target="_top">{{account.name}}</a></h3>
+                <div><img src="{{account.avatar_url}}" width="64px"> <a href="{{account.html_url}}" target="_top">{{account.name}}</a></div>
 
-                <h3>Company: {{account.company}}</h3>
+                <p>{{account.company}}</p>
 
-                <h3>Token: {{token}}</h3>
+                <p>{{token}}</p>
+
+                <table class="table table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th>Avatar</th>
+                        <th>Id</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr ng-repeat="organization in organizations">
+                        <td><img src="{{organization.avatar_url}}" width="32px"></td>
+                        <td><a href="{{organization.repos_url}}">{{organization.id}}</a></td>
+                    </tr>
+                    </tbody>
+                </table>
 
             </div>
 
 
-            <div class="col-md-6">
-                <h3>Projects</h3>
+            <div class="col-md-8">
+
+                <br/>
 
                 <table class="table table-striped table-hover">
                     <thead>
@@ -27,6 +44,7 @@
                         <th>Name</th>
                         <th>Language</th>
                         <th>Description</th>
+                        <th>Add</th>
                     </tr>
                     </thead>
 
@@ -35,6 +53,7 @@
                         <td><a href="{{project.html_url}}">{{project.full_name}}</a></td>
                         <td>{{project.language}}</td>
                         <td>{{project.description}}</td>
+                        <td><input type="checkbox" name="my-checkbox"></td>
                     </tr>
                     </tbody>
                 </table>

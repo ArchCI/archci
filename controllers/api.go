@@ -273,6 +273,22 @@ func (c *ApiController) GetAccountInfo() {
 
 }
 
+// GetAccountOrganizations return the organizations of github user.
+func (c *ApiController) GetAccountOrganizations() {
+	fmt.Println("Start get account organizations")
+
+	client := github.NewClient(oauthCfg.Client(oauth2.NoContext, tkn))
+
+	organizations, _, err := client.Organizations.List("", nil)
+	if err != nil {
+		fmt.Println("error getting organizations")
+		fmt.Println(nil)
+	}
+
+	c.Data["json"] = organizations
+	c.ServeJson()
+}
+
 // GetAccountProjects returns the projects of github user.
 func (c *ApiController) GetAccountProjects() {
 

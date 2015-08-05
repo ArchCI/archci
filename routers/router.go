@@ -44,6 +44,7 @@ func init() {
 	beego.Router("/v1/account/info", &controllers.ApiController{}, "get:GetAccountInfo")
 	beego.Router("/v1/account/projects", &controllers.ApiController{}, "get:GetAccountProjects")
 	beego.Router("/v1/account/token", &controllers.ApiController{}, "get:GetAccountToken")
+	beego.Router("/v1/account/organizations", &controllers.ApiController{}, "get:GetAccountOrganizations")
 
 	// Hooks api.
 	beego.Router("/v1/hook/github/push", &controllers.ApiController{}, "post:TriggerGithubPushHook")
