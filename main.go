@@ -23,7 +23,7 @@ const (
 // Build with -ldflags "-X main.GitVersion `git rev-parse HEAD` -X main.BuildTime `date -u '+%Y-%m-%d_%I:%M:%S'`"
 var (
 	GitVersion = "No git version provided"
-	BuildTime = "No build time provided"
+	BuildTime  = "No build time provided"
 )
 
 // Init will initialize database to create tables automatically.

@@ -1,6 +1,6 @@
 {
 	"ImportPath": "github.com/ArchCI/archci",
-	"GoVersion": "go1.4",
+	"GoVersion": "go1.3.3",
 	"Deps": [
 		{
 			"ImportPath": "github.com/Sirupsen/logrus",
@@ -24,6 +24,14 @@
 			"ImportPath": "github.com/go-sql-driver/mysql",
 			"Comment": "v1.2-108-g66b7d5c",
 			"Rev": "66b7d5c4956096efd4c945494d64ad73f1d9ec39"
+		},
+		{
+			"ImportPath": "github.com/google/go-github/github",
+			"Rev": "7277108aa3e8823e0e028f6c74aea2f4ce4a1b5a"
+		},
+		{
+			"ImportPath": "github.com/google/go-querystring/query",
+			"Rev": "547ef5ac979778feb2f760cdb5f4eae1a2207b86"
 		},
 		{
 			"ImportPath": "golang.org/x/net/context",
