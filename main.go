@@ -20,6 +20,12 @@ const (
 	MYSQL_DRIVER = "mysql"
 )
 
+// Build with -ldflags "-X main.GitVersion `git rev-parse HEAD` -X main.BuildTime `date -u '+%Y-%m-%d_%I:%M:%S'`"
+var (
+	GitVersion = "No git version provided"
+	BuildTime = "No build time provided"
+)
+
 // Init will initialize database to create tables automatically.
 func init() {
 	// Registry archci database models.
@@ -55,5 +61,10 @@ func init() {
 
 // Main is the entry to start beego application.
 func main() {
+
+	// Build with git version and build time. Print them when it starts.
+	fmt.Println("Git version: " + GitVersion)
+	fmt.Println("Build time: " + BuildTime)
+
 	beego.Run()
 }
