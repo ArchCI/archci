@@ -7,15 +7,16 @@ import (
 	"encoding/base64"
 
 	"fmt"
+	"time"
 
 	log "github.com/Sirupsen/logrus"
 
 	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/session"
 
 	"golang.org/x/oauth2"
 
 	"github.com/google/go-github/github"
-	"time"
 )
 
 // ApiController is the custom controller to provide APIs.
@@ -153,6 +154,13 @@ type GithubOauthRepositories []struct {
 	TeamsURL         string      `json:"teams_url"`
 }
 
+var globalSessions *session.Manager
+
+func init() {
+	globalSessions, _ = session.NewManager("memory", `{"cookieName":"gosessionid", "enableSetCookie,omitempty": true, "gclifetime":3600, "maxLifetime": 3600, "secure": false, "sessionIDHashFunc": "sha1", "sessionIDHashKey": "", "cookieLifeTime": 3600, "providerConfig": ""}`)
+	go globalSessions.GC()
+}
+
 func (c *ApiController) LoginGithub() {
 	log.Debug("Start to login github")
 
@@ -198,6 +206,16 @@ func (c *ApiController) LoginGithubCallback() {
 	*/
 
 	fmt.Println(tkn)
+
+	w := c.Ctx.ResponseWriter
+
+	sess, _ := globalSessions.SessionStart(w, r)
+	defer sess.SessionRelease(w)
+
+	//token := sess.Get("token")
+	//fmt.Println(token)
+
+	sess.Set("token", tkn)
 
 	if !tkn.Valid() {
 		fmt.Println("retreived invalid token")
@@ -293,6 +311,23 @@ func (c *ApiController) GetAccountOrganizations() {
 func (c *ApiController) GetAccountProjects() {
 
 	//projects := GithubOauthRepositories{{FullName:"ArchCI/archci", HTMLURL:"https://github.com/ArchCI/archci", Language: "Go", Description: "The best CI system"}, {FullName:"ArchCI/simple-worker", Homepage:"https://github.com/ArchCI/simple-worker", Language:"Go", Description: "The client of ArchCI"}}
+
+	/*
+		r := c.Ctx.Request
+		w := c.Ctx.ResponseWriter
+
+		token := tkn
+
+		sess, _ := globalSessions.SessionStart(w, r)
+		defer sess.SessionRelease(w)
+
+		if sess.Get("token") == nil {
+			token = sess.Get("token").(*oauth2.Token)
+
+			fmt.Println("hit token")
+
+		}
+	*/
 
 	client := github.NewClient(oauthCfg.Client(oauth2.NoContext, tkn))
 
