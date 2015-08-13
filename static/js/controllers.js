@@ -214,6 +214,11 @@ archciControllers.controller('ProjectsController', ['$scope', '$routeParams', '$
 
   $scope.addProject = function(userName, projectName, repoUrl) {
 
+    if(!userName || !projectName || !repoUrl) {
+      alert("You need to input the information of project")
+      return
+    }
+
     var data = {"UserName": userName,
                 "ProjectName": projectName,
                 "RepoUrl": repoUrl

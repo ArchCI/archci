@@ -14,15 +14,18 @@
                 <div class="modal-body">
 
                     <form role="form" >
-                        <div class="form-group">
-                            User name: <input class="form-control" type="text" placeholder="ArchCI" ng-model="userName">
+                        <div class="form-group required">
+                            <label class='control-label'>User name:</label>
+                            <input class="form-control" type="text" placeholder="ArchCI" ng-model="userName">
                         </div>
 
-                        <div class="form-group">
-                            Project name: <input class="form-control" type="text" placeholder="archci" ng-model="projectName">
+                        <div class="form-group required">
+                            <label class='control-label'>Project name:</label>
+                            <input class="form-control" type="text" placeholder="archci" ng-model="projectName">
                         </div>
-                        <div class="form-group">
-                            Repo url: <input class="form-control" type="text" placeholder="https://github.com/{{userName}}/{{projectName}}.git" ng-model="repoUrl">
+                        <div class="form-group required">
+                            <label class='control-label'>Repo url: </label>
+                            <input class="form-control" type="text" placeholder="https://github.com/{{userName}}/{{projectName}}.git" ng-model="repoUrl">
                         </div>
                     </form>
 
