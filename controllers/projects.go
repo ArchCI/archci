@@ -23,6 +23,7 @@ func (c *ApiController) NewProject() {
 	}
 
 	models.AddProject(project)
+	return
 }
 
 // GetProjectsAll return all projects from database.
@@ -40,9 +41,19 @@ func (c *ApiController) GetProject() {
 	log.Info("Get project")
 
 	projectId, _ := c.GetInt64(":projectId")
-
 	project := models.GetProjectWithId(projectId)
 
 	c.Data["json"] = project
 	c.ServeJson()
+}
+
+// DeleteProjectAndBuilds deletes the project and the relative builds.
+func (c *ApiController) DeleteProjectAndBuilds() {
+	log.Info("Delete project and the builds")
+
+	projectId, _ := c.GetInt64(":projectId")
+	models.DeleteProject(projectId)
+	models.DeleteBuildsWithProjectId(projectId)
+
+	return
 }

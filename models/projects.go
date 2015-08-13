@@ -74,6 +74,15 @@ func AddProject(project Project) error {
 	o := orm.NewOrm()
 
 	_, err := o.Insert(&project)
-	fmt.Println(err)
+
+	return err
+}
+
+// DeleteProject delete the project in database.
+func DeleteProject(projectId int64) error {
+	o := orm.NewOrm()
+
+	_, err := o.Delete(&Project{Id: projectId})
+
 	return err
 }

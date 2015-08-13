@@ -136,3 +136,12 @@ func AddBuild(projectName string, branch string, commit string, commitTime time.
 	_, err := o.Insert(&build)
 	return err
 }
+
+// DeleteBuildsWithProjectId deletes all the builds from the project.
+func DeleteBuildsWithProjectId(projectId int64) error {
+	o := orm.NewOrm()
+
+	_, err := o.Delete(&Build{ProjectId: projectId})
+
+	return err
+}

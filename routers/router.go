@@ -34,6 +34,7 @@ func init() {
 	beego.Router("/v1/projects/new", &controllers.ApiController{}, "post:NewProject")
 	beego.Router("/v1/projects/all", &controllers.ApiController{}, "get:GetProjectsAll")
 	beego.Router("/v1/projects/:projectId", &controllers.ApiController{}, "get:GetProject")
+	beego.Router("/v1/projects/:projectId", &controllers.ApiController{}, "delete:DeleteProjectAndBuilds")
 
 	// Workers api.
 	beego.Router("/v1/workers/all", &controllers.ApiController{}, "get:GetWorkersAll")

@@ -238,6 +238,25 @@ archciControllers.controller('ProjectsController', ['$scope', '$routeParams', '$
 
   }
 
+  $scope.deleteProject = function(projectId) {
+    if (confirm('Are you sure to delete project?')) {
+        $http.delete("/v1/projects/" + projectId).success(function(data) {
+          alert("Success to delete project");
+          $http.get("/v1/projects/all").success(function(data) {
+            $scope.projects = data;
+          });
+
+          // TODO(tobe): check if the id exists or not
+          $http.get("/v1/projects/" + $routeParams.projectId).success(function(data) {
+            $scope.project = data
+          });
+        });
+    } else {
+        // Do nothing!
+    }
+
+  }
+
   // Post the data to record new build in database
   $scope.triggerCI = function(project) {
 
